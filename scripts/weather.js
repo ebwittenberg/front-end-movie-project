@@ -18,10 +18,21 @@ function getWeatherData(zipcode) {
             return response.json()
         })
         // take the second promise and console log the data
-        .then(function(weatherData) {
-            console.log(weatherData)
+        .then(function(weatherObject) {
+            createWeatherInfo(weatherObject);
         })
+}
 
+// this function takes the weather object from the fetch chain, and starts displaying info to the user
+function createWeatherInfo(weatherObject) {
+    // creates pointer to weather div
+    const weatherDiv = document.querySelector('[data-weather]');
+    // creates a h2 element for city info
+    let cityH2 = document.createElement('h2');
+    // assigns text content
+    cityH2.textContent = `Your city is: ${weatherObject.city.name}`;
 
+    // puts the city h2 info into the weatherDiv
+    weatherDiv.append(cityH2);
 
 }
