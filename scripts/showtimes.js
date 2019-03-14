@@ -13,5 +13,38 @@ function fetchShowtimeData(date) {
         })
         .then(function(showtimeData) {
             console.log(showtimeData);
+            let movieTitle = showtimeData[12].title
+            console.log(movieTitle);
+            fetchOmdbData(movieTitle)
+            
         })
 }
+
+
+function fetchOmdbData(movieTitle) {
+    const omdbUrl = `http://www.omdbapi.com/?apikey=48ba5f31&t=${movieTitle}`
+    fetch(omdbUrl)
+    .then (function(response) {
+        console.log(response);
+        return response.json();
+    })
+    .then (function(movieData) {
+        console.log(movieData)
+        let imageUrl = movieData.Poster
+        console.log(imageUrl)
+        drawMoviePoster(imageUrl)
+    })
+}
+
+function drawMoviePoster(imageUrl) {
+    let posterContainer = document.querySelector('[data-postercontainer]');
+    let posterFrame = document.createElement('div');
+    let img = document.createElement('img');
+
+    img.setAttribute('src', imageUrl);
+    
+    posterContainer.append(posterFrame);
+    posterFrame.append(img);
+
+}
+
