@@ -19,12 +19,13 @@ function getWeatherData(zipcode) {
         })
         // take the second promise and console log the data
         .then(function(weatherObject) {
-            createWeatherInfo(weatherObject);
+            createCityInfo(weatherObject);
+            firstTimeRain(weatherObject);
         })
 }
 
 // this function takes the weather object from the fetch chain, and starts displaying info to the user
-function createWeatherInfo(weatherObject) {
+function createCityInfo(weatherObject) {
     // creates pointer to weather div
     const weatherDiv = document.querySelector('[data-weather]');
     // creates a h2 element for city info
@@ -35,4 +36,21 @@ function createWeatherInfo(weatherObject) {
     // puts the city h2 info into the weatherDiv
     weatherDiv.append(cityH2);
 
+}
+
+// this will find the first instance of rain in the 5 day forecast
+function firstTimeRain(weatherObject) {
+    // array of data for each 3 hour period for 5 days
+    let daysArray = weatherObject.list
+    // initialize empty array of rainy days
+    let rainyDays = [];
+    // loop through daysArray
+    daysArray.forEach(function(day) {
+        // if we find a instance where it is raining
+        if (day.weather[0].main === 'Rain') {
+            // add the rainy instance to the array
+            rainyDays.push(day.dt_txt);
+        }
+    })
+    console.log(rainyDays);
 }
