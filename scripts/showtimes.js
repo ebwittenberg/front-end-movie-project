@@ -14,9 +14,26 @@ function fetchShowtimeData(date) {
         .then(function(showtimeData) {
             console.log(showtimeData);
             let movieTitle = showtimeData[12].title
+            // create array of movie titles in user's area
+            let movieTitles = [];
+            // loop through each movie in user's area, push title to the movie titles area
+            showtimeData.forEach(function(movie) {
+                movieTitles.push(movie.title)
+            })
+            console.log(movieTitles);
+
+            // loop through each movie title
+            movieTitles.forEach(function(title) {
+                fetchOmdbData(title);
+            })
+
+
+
+
+
             console.log(movieTitle);
-            fetchOmdbData(movieTitle)
-            retrieveMovieDetails(showtimeData)
+            // fetchOmdbData(movieTitle);
+            // retrieveMovieDetails(showtimeData);
             
         })
 }
