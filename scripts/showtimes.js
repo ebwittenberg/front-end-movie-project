@@ -5,7 +5,7 @@ function fetchShowtimeData(date) {
     let dateArray = date.split(' ');
     const dateOnly = dateArray[0];
 
-    let showtimeURL = `http://data.tmsapi.com/v1.1/movies/showings?startDate=${dateOnly}&zip=${zip}&api_key=4g7bvs4v2vy929mbgrqynbkv`;
+    let showtimeURL = `http://data.tmsapi.com/v1.1/movies/showings?startDate=${dateOnly}&zip=${zip}&api_key=36zekhh8ta2kuj2cujbj55rd`;
     // returns a promise
     fetch(showtimeURL)
         .then(function(response) {
@@ -16,6 +16,7 @@ function fetchShowtimeData(date) {
             let movieTitle = showtimeData[12].title
             console.log(movieTitle);
             fetchOmdbData(movieTitle)
+            retrieveMovieDetails(showtimeData)
             
         })
 }
