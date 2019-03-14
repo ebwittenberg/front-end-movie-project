@@ -12,11 +12,7 @@ function getZipCode() {
 }
 
 
-const daysOfTheWeekArray =['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday',]
-let dt = new Date("2019-03-16 15:00:00");
-let dayOfWeekNum = dt.getDay()
-let dayOfWeek = daysOfTheWeekArray[dayOfWeekNum]
-console.log("Today is: " + dayOfWeek );
+
 
 
 
