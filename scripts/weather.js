@@ -60,8 +60,12 @@ function allRainyDays(weatherObject) {
 function firstRainyDay(rainyDaysArray) {
     // save first rainy instance in array
     let firstRainDay = rainyDaysArray[0];
+    const daysOfTheWeekArray =['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday',]
+    let dt = new Date(firstRainDay);
+    let dayOfWeekIndex = dt.getDay()
+    let dayOfWeek = daysOfTheWeekArray[dayOfWeekIndex]
     let rainyH2 = document.createElement('h2');
-    rainyH2.textContent = `Your first rainy day is: ${firstRainDay}`;
+    rainyH2.textContent = `Your next rainy day is: ${dayOfWeek}`;
 
     weatherDiv.append(rainyH2);
 
