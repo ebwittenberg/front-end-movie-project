@@ -5,6 +5,8 @@ function getWeatherData(zipcode) {
     // Below is for when we are actually calling the OpenWeatherMap API to get real-time forecast
     const weatherApiKey = '449d8f25bab8a422a5c3936e6e9abe0e';
 
+    zip = zipcode;
+
     const weatherForecastUrl = `http://api.openweathermap.org/data/2.5/forecast?zip=${zipcode},us&appid=${weatherApiKey}`;
 
     // Using the JSON weather...
@@ -14,7 +16,6 @@ function getWeatherData(zipcode) {
     fetch(weatherForecastUrl)
         // take that promise and convert to JSON
         .then(function(response) {
-            console.log(response)
             return response.json()
         })
         // take the second promise and console log the data
@@ -59,6 +60,7 @@ function allRainyDays(weatherObject) {
 
 function firstRainyDay(rainyDaysArray) {
     // save first rainy instance in array
+    // 2019-03-15 00:00:00
     let firstRainDay = rainyDaysArray[0];
     const daysOfTheWeekArray =['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday',]
     let dt = new Date(firstRainDay);
@@ -69,5 +71,6 @@ function firstRainyDay(rainyDaysArray) {
 
     weatherDiv.append(rainyH2);
 
+    fetchShowtimeData(firstRainDay);
 
 }
