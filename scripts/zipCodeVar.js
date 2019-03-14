@@ -1,7 +1,10 @@
 
 // pointer to submit button
-let submitButton = document.querySelector('[data-zipcode]');
-submitButton.addEventListener('click', getZipCode)
+function lookForSubmitClick() {
+
+    let submitButton = document.querySelector('[data-zipcode]');
+    submitButton.addEventListener('click', getZipCode)
+}
 
 
 
