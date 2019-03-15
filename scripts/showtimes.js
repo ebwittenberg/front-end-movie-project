@@ -49,6 +49,7 @@ function storeShowTimeData(showtimeDatas) {
 
 function fetchOmdbData(movieTitle) {
     const omdbUrl = `http://www.omdbapi.com/?apikey=48ba5f31&t=${movieTitle}`
+    let title = movieTitle;
     fetch(omdbUrl)
     .then (function(response) {
         console.log(response);
@@ -58,19 +59,38 @@ function fetchOmdbData(movieTitle) {
         console.log(movieData)
         let imageUrl = movieData.Poster
         console.log(imageUrl)
-        drawMoviePoster(imageUrl)
+        drawMoviePoster(title, imageUrl)
     })
 }
 
-function drawMoviePoster(imageUrl) {
+function drawMoviePoster(movieTitle, imageUrl) {
     let posterContainer = document.querySelector('[data-postercontainer]');
     let posterFrame = document.createElement('div');
-    let img = document.createElement('img');
-
-    img.setAttribute('src', imageUrl);
+    // replace spaces in movie title with dashes
+    let dashesMovieTitle = movieTitle.replace(/ /g, "-");
     
+    // add event listener to each poster frame that calls a function
+    
+    let img = document.createElement('img');
+    
+    img.setAttribute('src', imageUrl);
+    img.classList.add(dashesMovieTitle);
+    
+    img.addEventListener('click', function() {
+        getMovieClassName(event);
+    })
     posterContainer.append(posterFrame);
     posterFrame.append(img);
 
 }
+
+// add movie details to bottom of page (for now) when poster is clicked on
+function getMovieClassName(event) {
+    let dashesMovieTitle = event.target.classList[0];
+    // convert dashes movie title back to spaces
+    let movieTitle = dashesMovieTitle.replace(/-/g, " ");
+    console.log(movieTitle);
+}
+
+
 
