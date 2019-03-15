@@ -17,8 +17,7 @@ function lookForSubmitClick() {
 
 function getZipCode() {
     let zipCode = document.querySelector("[data-zipcodeinput]").value;
-    console.log(zipCode)
-    getWeatherData(zipCode)
+    getWeatherData(zipCode);
 }
 
 

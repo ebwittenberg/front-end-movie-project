@@ -1,11 +1,10 @@
-// const showtimeURL = 'http://data.tmsapi.com/v1.1/movies/showings?startDate=2019-03-13&zip=30312&api_key=4g7bvs4v2vy929mbgrqynbkv';
-
 function fetchShowtimeData(date) {
 
     let dateArray = date.split(' ');
     const dateOnly = dateArray[0];
 
     let showtimeURL = `http://data.tmsapi.com/v1.1/movies/showings?startDate=${dateOnly}&zip=${zip}&api_key=xguxvke7xybd3fsscb7h446v`;
+    // showtime URL is going to give us all the movies that are playing in the zip code radius
     // returns a promise
     fetch(showtimeURL)
         .then(function(response) {
@@ -14,25 +13,20 @@ function fetchShowtimeData(date) {
         .then(function(showtimeData) {
             console.log(showtimeData);
 
+            // puts all the showtimeData info in local storage for later use
             storeShowTimeData(showtimeData)
-
-            let movieTitle = showtimeData[12].title
             // create array of movie titles in user's area
             let movieTitles = [];
-            // loop through each movie in user's area, push title to the movie titles area
+            // loop through each movie in user's area, push title to the movie titles array
             showtimeData.forEach(function(movie) {
                 movieTitles.push(movie.title)
             })
-            console.log(movieTitles);
 
-            // loop through each movie title
+            // loop through each movie title to get the OMDB data for each movie
             movieTitles.forEach(function(title) {
                 fetchOmdbData(title);
             })
 
-            console.log(movieTitle);
-            // fetchOmdbData(movieTitle);
-            // retrieveMovieDetails(showtimeData);
             
         })
 }
@@ -41,7 +35,7 @@ function storeShowTimeData(showtimeDatas) {
     const jsonStringShowTimeData = JSON.stringify(showtimeDatas)
     console.log(`Saving ${Object.keys(showtimeDatas).length} movies to local storage`)
 
-    localStorage.setItem('movie-data', jsonStringShowTimeData)
+    localStorage.setItem('ST-movie-data', jsonStringShowTimeData)
 
 
 }
@@ -66,27 +60,34 @@ function fetchOmdbData(movieTitle) {
     })
 }
 
-function drawMoviePoster(movieTitle, imageUrl, omdbMovieData) {
+function drawMoviePoster(STmovieTitle, imageUrl, omdbMovieData) {
     let posterContainer = document.querySelector('[data-postercontainer]');
     let posterFrame = document.createElement('div');
     // replace spaces in movie title with dashes
-    let dashesMovieTitle = movieTitle.replace(/ /g, "-");
+    let underscoreMovieTitle = STmovieTitle.replace(/ /g, "_");
     
-    
-    if (imageUrl === 'N/A' || movieTitle !== omdbMovieData.Title) {
-        // do something
+    // if there is no poster on OMDB database or if the OMDB database can't find the movie at all
+    if (imageUrl === 'N/A' || STmovieTitle !== omdbMovieData.Title) {
+        // replace poster art with movie title text
         let backupPosterText = document.createElement('h2');
-        backupPosterText.textContent = movieTitle;
+        backupPosterText.textContent = STmovieTitle;
         posterFrame.append(backupPosterText);
         posterContainer.append(posterFrame);
 
+        backupPosterText.classList.add(underscoreMovieTitle);
+
+        backupPosterText.addEventListener('click', function() {
+            getMovieClassName(event);
+        })
+
     } else {
+        // put the actual poster art in the poster container
         // make an image with the poster URL
         let img = document.createElement('img');
         
         img.setAttribute('src', imageUrl);
         
-        img.classList.add(dashesMovieTitle);
+        img.classList.add(underscoreMovieTitle);
         
         // add event listener to each poster frame that calls a function
         img.addEventListener('click', function() {
@@ -100,30 +101,30 @@ function drawMoviePoster(movieTitle, imageUrl, omdbMovieData) {
 
 // add movie details to bottom of page (for now) when poster is clicked on
 function getMovieClassName(event) {
-    let dashesMovieTitle = event.target.classList[0];
+    let underscoreMovieTitle = event.target.classList[0];
     // convert dashes movie title back to spaces
-    let movieTitle = dashesMovieTitle.replace(/-/g, " ");
-    console.log(movieTitle);
+    let STmovieTitle = underscoreMovieTitle.replace(/_/g, " ");
 
-    let storedMovieData = localStorage.getItem('movie-data');
-    let parsedMovieData = JSON.parse(storedMovieData);
-    parsedMovieData.forEach(function (movie) {
-        if (movie.title === movieTitle) {
+    let storedSTMovieData = localStorage.getItem('ST-movie-data');
+    let parsedSTMovieData = JSON.parse(storedSTMovieData);
+    parsedSTMovieData.forEach(function (STMovieObject) {
+        if (STMovieObject.title === STmovieTitle) {
             let movieTitleDiv = document.querySelector('[data-info-pop]');
             let titleh2 = document.createElement('h2');
-            titleh2.textContent = movie.title;
+            titleh2.textContent = STMovieObject.title;
             movieTitleDiv.append(titleh2);
 
+            // this array has duplicate theaters in it that are all sorted together
             let movieTheaterArray = [];
-            movie.showtimes.forEach(function (theatre) {
+            StMovieObject.showtimes.forEach(function (theatre) {
                 movieTheaterArray.push(theatre.theatre.name);
 
 
-
             })
+            // unique theaters is an array with just the unique theater names
             let uniqueTheaters = buildUniqueTheaterArray(movieTheaterArray);
-            appendMovieDetails(movie);
-            appendTheaterDetails(movie, uniqueTheaters);
+            appendMovieDetails(STMovieObject);
+            appendTheaterDetails(STMovieObject, uniqueTheaters);
         }
     })
 }
@@ -142,23 +143,26 @@ function buildUniqueTheaterArray(showtimes) {
 
 }
 
-function appendTheaterDetails(movieData, theatersArray) {
-    // console.log(parsedData)
-    theatersArray.forEach(function(theaterName) {
-        let popUpDiv = document.querySelector('[data-info-pop]')
+// shows theater name in larger text, with showtimes at that theater following it
+function appendTheaterDetails(STMovieObject, uniqueTheatersArray) {
+    
+    uniqueTheatersArray.forEach(function(theaterName) {
+        let movieDetailsDiv = document.querySelector('[data-info-pop]')
         let theaterNameH2 = document.createElement('h2')
         // set text content of h2 to the unique theater name
         theaterNameH2.textContent = theaterName;
-        popUpDiv.append(theaterNameH2);
+        movieDetailsDiv.append(theaterNameH2);
 
         // loop through the showtimes for that movie
-        movieData.showtimes.forEach(function(showtime) {
+        STMovieObject.showtimes.forEach(function(showtime) {
+            // only want to append the showtimes that correspond to the matching theater names
             if (showtime.theatre.name === theaterName) {
                 // create paragraph element for the showtime
                 let showtimePara = document.createElement('p')
+                // puts actual show time as text content
                 showtimePara.textContent = showtime.dateTime
                 // append para to popup div
-                popUpDiv.append(showtimePara);
+                movieDetailsDiv.append(showtimePara);
             }
         })
     
@@ -166,26 +170,23 @@ function appendTheaterDetails(movieData, theatersArray) {
 }
 
 // uses OMDB database API to draw certain movie details to the pop-up div
-function appendMovieDetails(film) {
+function appendMovieDetails(STMovieObject) {
     // gets movie info for clicked on movie from local storage
-    let storedOmbdMovieInfo = localStorage.getItem(film.title);
+    let storedOmbdMovieInfo = localStorage.getItem(STMovieObject.title);
     let parsedOmdbMovieInfo = JSON.parse(storedOmbdMovieInfo);
-    console.log(parsedOmdbMovieInfo);
 
     
     let movieDetailsDiv = document.querySelector('[data-info-pop]');
     
     // draws summary into pop up div
-    let movieSummaryH2 = document.createElement('h2')
-    movieSummaryH2.textContent = parsedOmdbMovieInfo.Plot
-    console.log(parsedOmdbMovieInfo.Plot)
+    let movieSummaryH2 = document.createElement('h2');
+    movieSummaryH2.textContent = parsedOmdbMovieInfo.Plot;
 
     movieDetailsDiv.append(movieSummaryH2);
 
      // draws movie MCAA rating into pop up div
      let MCAARatingH2 = document.createElement('h2')
      MCAARatingH2.textContent = parsedOmdbMovieInfo.Rated
-     console.log(parsedOmdbMovieInfo.Rated)
  
      movieDetailsDiv.append(MCAARatingH2);
 

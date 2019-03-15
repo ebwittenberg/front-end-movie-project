@@ -5,20 +5,18 @@ function getWeatherData(zipcode) {
     // Below is for when we are actually calling the OpenWeatherMap API to get real-time forecast
     const weatherApiKey = '449d8f25bab8a422a5c3936e6e9abe0e';
 
+    // first global variable
     zip = zipcode;
 
     const weatherForecastUrl = `http://api.openweathermap.org/data/2.5/forecast?zip=${zipcode},us&appid=${weatherApiKey}`;
-
-    // Using the JSON weather...
-    const jsonWeatherURL = '../json/atlWeather.json';
     
-    // fetch the data from the jsonURL, returns a promise
+    // fetch the data from the weather forecast URL, returns a promise
     fetch(weatherForecastUrl)
         // take that promise and convert to JSON
         .then(function(response) {
             return response.json()
         })
-        // take the second promise and console log the data
+        // take the second promise and call function that appends the city info, and function that will find rainy days
         .then(function(weatherObject) {
             createCityInfo(weatherObject);
             allRainyDays(weatherObject);
@@ -32,7 +30,7 @@ function createCityInfo(weatherObject) {
     // creates a h2 element for city info
     let cityH2 = document.createElement('h2');
     // assigns text content
-    cityH2.textContent = `Your city is: ${weatherObject.city.name}`;
+    cityH2.textContent = `Rain is expected in ${weatherObject.city.name} on: `;
 
     // puts the city h2 info into the weatherDiv
     weatherDiv.append(cityH2);
@@ -67,7 +65,7 @@ function firstRainyDay(rainyDaysArray) {
     let dayOfWeekIndex = dt.getDay()
     let dayOfWeek = daysOfTheWeekArray[dayOfWeekIndex]
     let rainyH2 = document.createElement('h2');
-    rainyH2.textContent = `Your next rainy day is: ${dayOfWeek}`;
+    rainyH2.textContent = dayOfWeek;
 
     weatherDiv.append(rainyH2);
 
