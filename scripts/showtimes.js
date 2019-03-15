@@ -116,7 +116,7 @@ function getMovieClassName(event) {
 
             // this array has duplicate theaters in it that are all sorted together
             let movieTheaterArray = [];
-            StMovieObject.showtimes.forEach(function (theatre) {
+            STMovieObject.showtimes.forEach(function (theatre) {
                 movieTheaterArray.push(theatre.theatre.name);
 
 
