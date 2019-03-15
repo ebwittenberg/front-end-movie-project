@@ -5,7 +5,7 @@ function fetchShowtimeData(date) {
     let dateArray = date.split(' ');
     const dateOnly = dateArray[0];
 
-    let showtimeURL = `http://data.tmsapi.com/v1.1/movies/showings?startDate=${dateOnly}&zip=${zip}&api_key=36zekhh8ta2kuj2cujbj55rd`;
+    let showtimeURL = `http://data.tmsapi.com/v1.1/movies/showings?startDate=${dateOnly}&zip=${zip}&api_key=xguxvke7xybd3fsscb7h446v`;
     // returns a promise
     fetch(showtimeURL)
         .then(function(response) {
@@ -172,8 +172,17 @@ function appendMovieDetails(film) {
     let parsedOmdbMovieInfo = JSON.parse(storedOmbdMovieInfo);
     console.log(parsedOmdbMovieInfo);
 
-    // draws rating into pop up div
+    
     let movieDetailsDiv = document.querySelector('[data-info-pop]');
+    // draws summary into pop up div
+    let movieSummaryH2 = document.createElement('h2')
+    movieSummaryH2.textContent = parsedOmdbMovieInfo.Plot
+    console.log(parsedOmdbMovieInfo.Plot)
+
+    movieDetailsDiv.append(movieSummaryH2);
+
+
+    // draws IMDB rating into pop up div
 
     let ratingsH2 = document.createElement('h2');
     ratingsH2.textContent = `IMDB Rating: ${parsedOmdbMovieInfo.imdbRating}`;
