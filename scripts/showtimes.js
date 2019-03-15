@@ -90,7 +90,39 @@ function getMovieClassName(event) {
     // convert dashes movie title back to spaces
     let movieTitle = dashesMovieTitle.replace(/-/g, " ");
     console.log(movieTitle);
+
+    let storedMovieData = localStorage.getItem('movie-data');
+    let parsedMovieData = JSON.parse(storedMovieData);
+    parsedMovieData.forEach(function (movie) {
+        if (movie.title === movieTitle) {
+            let movieTitleDiv = document.querySelector('[data-info-pop]');
+            let titleh2 = document.createElement('h2');
+            titleh2.textContent = movie.title;
+            movieTitleDiv.append(titleh2);
+
+            let movieTheaterArray = [];
+            movie.showtimes.forEach(function (theatre) {
+                movieTheaterArray.push(theatre.theatre.name);
+
+
+
+            })
+            let uniqueTheaters = buildUniqueTheaterArray(movieTheaterArray);
+        }
+    })
 }
 
+function buildUniqueTheaterArray(showtimes) {
+    let uniqueTheaterArray = [];
+    let prevTheater;
 
+    showtimes.forEach(function (showtime) {
+        if (showtime !== prevTheater) {
+            uniqueTheaterArray.push(showtime);
+        }
+        prevTheater = showtime;
+    })
+    return uniqueTheaterArray;
+
+}
 
