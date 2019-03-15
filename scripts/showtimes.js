@@ -38,10 +38,10 @@ function fetchShowtimeData(date) {
 }
 
 function storeShowTimeData(showtimeDatas) {
-    const jsonStingShowTimeData = JSON.stringify(showtimeDatas)
+    const jsonStringShowTimeData = JSON.stringify(showtimeDatas)
     console.log(`Saving ${Object.keys(showtimeDatas).length} movies to local storage`)
 
-    localStorage.setItem('movie-data', jsonStingShowTimeData)
+    localStorage.setItem('movie-data', jsonStringShowTimeData)
 
 
 }
@@ -52,35 +52,49 @@ function fetchOmdbData(movieTitle) {
     let title = movieTitle;
     fetch(omdbUrl)
     .then (function(response) {
-        console.log(response);
         return response.json();
     })
-    .then (function(movieData) {
-        console.log(movieData)
-        let imageUrl = movieData.Poster
-        console.log(imageUrl)
-        drawMoviePoster(title, imageUrl)
+    .then (function(omdbMovieData) {
+        let omdbFilmData = omdbMovieData;
+        // store ombd data for that movie in localStorage
+        const jsonStringOmbdData = JSON.stringify(omdbMovieData);
+        localStorage.setItem(title, jsonStringOmbdData);
+
+
+        let imageUrl = omdbMovieData.Poster
+        drawMoviePoster(title, imageUrl, omdbMovieData)
     })
 }
 
-function drawMoviePoster(movieTitle, imageUrl) {
+function drawMoviePoster(movieTitle, imageUrl, omdbMovieData) {
     let posterContainer = document.querySelector('[data-postercontainer]');
     let posterFrame = document.createElement('div');
     // replace spaces in movie title with dashes
-    let dashesMovieTitle = movieTitle.replace(/ /g, "_");
+    let dashesMovieTitle = movieTitle.replace(/ /g, "-");
     
-    // add event listener to each poster frame that calls a function
     
-    let img = document.createElement('img');
-    
-    img.setAttribute('src', imageUrl);
-    img.classList.add(dashesMovieTitle);
-    
-    img.addEventListener('click', function() {
-        getMovieClassName(event);
-    })
-    posterContainer.append(posterFrame);
-    posterFrame.append(img);
+    if (imageUrl === 'N/A' || movieTitle !== omdbMovieData.Title) {
+        // do something
+        let backupPosterText = document.createElement('h2');
+        backupPosterText.textContent = movieTitle;
+        posterFrame.append(backupPosterText);
+        posterContainer.append(posterFrame);
+
+    } else {
+        // make an image with the poster URL
+        let img = document.createElement('img');
+        
+        img.setAttribute('src', imageUrl);
+        
+        img.classList.add(dashesMovieTitle);
+        
+        // add event listener to each poster frame that calls a function
+        img.addEventListener('click', function() {
+            getMovieClassName(event);
+        })
+        posterContainer.append(posterFrame);
+        posterFrame.append(img);
+    }
 
 }
 
@@ -88,7 +102,7 @@ function drawMoviePoster(movieTitle, imageUrl) {
 function getMovieClassName(event) {
     let dashesMovieTitle = event.target.classList[0];
     // convert dashes movie title back to spaces
-    let movieTitle = dashesMovieTitle.replace(/_/g, " ");
+    let movieTitle = dashesMovieTitle.replace(/-/g, " ");
     console.log(movieTitle);
 
     let storedMovieData = localStorage.getItem('movie-data');
@@ -108,6 +122,7 @@ function getMovieClassName(event) {
 
             })
             let uniqueTheaters = buildUniqueTheaterArray(movieTheaterArray);
+            appendMovieDetails(movie);
             appendTheaterDetails(movie, uniqueTheaters);
         }
     })
@@ -129,7 +144,6 @@ function buildUniqueTheaterArray(showtimes) {
 
 function appendTheaterDetails(movieData, theatersArray) {
     // console.log(parsedData)
-    console.log(movieData);
     theatersArray.forEach(function(theaterName) {
         let popUpDiv = document.querySelector('[data-info-pop]')
         let theaterNameH2 = document.createElement('h2')
@@ -140,21 +154,33 @@ function appendTheaterDetails(movieData, theatersArray) {
         // loop through the showtimes for that movie
         movieData.showtimes.forEach(function(showtime) {
             if (showtime.theatre.name === theaterName) {
-                console.log('found a match');
                 // create paragraph element for the showtime
                 let showtimePara = document.createElement('p')
                 showtimePara.textContent = showtime.dateTime
-                console.log(showtimePara);
                 // append para to popup div
                 popUpDiv.append(showtimePara);
             }
         })
-
-    
-
-        // let theaterNameH2.textContent = theatersArray.
     
     })
 }
 
+// uses OMDB database API to draw certain movie details to the pop-up div
+function appendMovieDetails(film) {
+    // gets movie info for clicked on movie from local storage
+    let storedOmbdMovieInfo = localStorage.getItem(film.title);
+    let parsedOmdbMovieInfo = JSON.parse(storedOmbdMovieInfo);
+    console.log(parsedOmdbMovieInfo);
 
+    // draws rating into pop up div
+    let movieDetailsDiv = document.querySelector('[data-info-pop]');
+
+    let ratingsH2 = document.createElement('h2');
+    ratingsH2.textContent = `IMDB Rating: ${parsedOmdbMovieInfo.imdbRating}`;
+
+    if (parsedOmdbMovieInfo.imdbRating === "N/A") {
+        ratingsH2.textContent = "";
+    }
+    movieDetailsDiv.append(ratingsH2);
+
+}
