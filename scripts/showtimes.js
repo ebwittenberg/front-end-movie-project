@@ -13,6 +13,9 @@ function fetchShowtimeData(date) {
         })
         .then(function(showtimeData) {
             console.log(showtimeData);
+
+            storeShowTimeData(showtimeData)
+
             let movieTitle = showtimeData[12].title
             // create array of movie titles in user's area
             let movieTitles = [];
@@ -27,15 +30,20 @@ function fetchShowtimeData(date) {
                 fetchOmdbData(title);
             })
 
-
-
-
-
             console.log(movieTitle);
             // fetchOmdbData(movieTitle);
             // retrieveMovieDetails(showtimeData);
             
         })
+}
+
+function storeShowTimeData(showtimeDatas) {
+    const jsonStingShowTimeData = JSON.stringify(showtimeDatas)
+    console.log(`Saving ${Object.keys(showtimeDatas).length} movies to local storage`)
+
+    localStorage.setItem('movie-data', jsonStingShowTimeData)
+
+
 }
 
 
