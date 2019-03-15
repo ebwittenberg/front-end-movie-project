@@ -67,7 +67,7 @@ function drawMoviePoster(movieTitle, imageUrl) {
     let posterContainer = document.querySelector('[data-postercontainer]');
     let posterFrame = document.createElement('div');
     // replace spaces in movie title with dashes
-    let dashesMovieTitle = movieTitle.replace(/ /g, "-");
+    let dashesMovieTitle = movieTitle.replace(/ /g, "_");
     
     // add event listener to each poster frame that calls a function
     
@@ -88,7 +88,7 @@ function drawMoviePoster(movieTitle, imageUrl) {
 function getMovieClassName(event) {
     let dashesMovieTitle = event.target.classList[0];
     // convert dashes movie title back to spaces
-    let movieTitle = dashesMovieTitle.replace(/-/g, " ");
+    let movieTitle = dashesMovieTitle.replace(/_/g, " ");
     console.log(movieTitle);
 
     let storedMovieData = localStorage.getItem('movie-data');
