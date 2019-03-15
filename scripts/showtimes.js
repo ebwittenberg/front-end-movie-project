@@ -108,7 +108,7 @@ function getMovieClassName(event) {
 
             })
             let uniqueTheaters = buildUniqueTheaterArray(movieTheaterArray);
-            appendTheaterDetails(movie, parsedMovieData, uniqueTheaters);
+            appendTheaterDetails(movie, uniqueTheaters);
         }
     })
 }
@@ -127,14 +127,30 @@ function buildUniqueTheaterArray(showtimes) {
 
 }
 
-function appendTheaterDetails(moovee, parsedData, theatersArray) {
+function appendTheaterDetails(movieData, theatersArray) {
     // console.log(parsedData)
+    console.log(movieData);
     theatersArray.forEach(function(theaterName) {
-        console.log(theaterName)
-    
-        let theaterNameH2 = document.createElement('h2')
-        let showtimePara = document.createElement('p')
         let popUpDiv = document.querySelector('[data-info-pop]')
+        let theaterNameH2 = document.createElement('h2')
+        // set text content of h2 to the unique theater name
+        theaterNameH2.textContent = theaterName;
+        popUpDiv.append(theaterNameH2);
+
+        // loop through the showtimes for that movie
+        movieData.showtimes.forEach(function(showtime) {
+            if (showtime.theatre.name === theaterName) {
+                console.log('found a match');
+                // create paragraph element for the showtime
+                let showtimePara = document.createElement('p')
+                showtimePara.textContent = showtime.dateTime
+                console.log(showtimePara);
+                // append para to popup div
+                popUpDiv.append(showtimePara);
+            }
+        })
+
+    
 
         // let theaterNameH2.textContent = theatersArray.
     
