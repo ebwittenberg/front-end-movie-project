@@ -174,6 +174,7 @@ function appendMovieDetails(film) {
 
     
     let movieDetailsDiv = document.querySelector('[data-info-pop]');
+    
     // draws summary into pop up div
     let movieSummaryH2 = document.createElement('h2')
     movieSummaryH2.textContent = parsedOmdbMovieInfo.Plot
@@ -181,9 +182,15 @@ function appendMovieDetails(film) {
 
     movieDetailsDiv.append(movieSummaryH2);
 
+     // draws movie MCAA rating into pop up div
+     let MCAARatingH2 = document.createElement('h2')
+     MCAARatingH2.textContent = parsedOmdbMovieInfo.Rated
+     console.log(parsedOmdbMovieInfo.Rated)
+ 
+     movieDetailsDiv.append(MCAARatingH2);
 
-    // draws IMDB rating into pop up div
 
+    // draws IMDB review into pop up div
     let ratingsH2 = document.createElement('h2');
     ratingsH2.textContent = `IMDB Rating: ${parsedOmdbMovieInfo.imdbRating}`;
 
