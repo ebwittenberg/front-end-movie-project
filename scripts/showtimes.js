@@ -108,6 +108,7 @@ function getMovieClassName(event) {
 
             })
             let uniqueTheaters = buildUniqueTheaterArray(movieTheaterArray);
+            appendTheaterDetails(movie, parsedMovieData, uniqueTheaters);
         }
     })
 }
@@ -125,4 +126,19 @@ function buildUniqueTheaterArray(showtimes) {
     return uniqueTheaterArray;
 
 }
+
+function appendTheaterDetails(moovee, parsedData, theatersArray) {
+    // console.log(parsedData)
+    theatersArray.forEach(function(theaterName) {
+        console.log(theaterName)
+    
+        let theaterNameH2 = document.createElement('h2')
+        let showtimePara = document.createElement('p')
+        let popUpDiv = document.querySelector('[data-info-pop]')
+
+        // let theaterNameH2.textContent = theatersArray.
+    
+    })
+}
+
 
