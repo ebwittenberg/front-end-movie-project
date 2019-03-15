@@ -68,13 +68,29 @@ function drawMoviePoster(movieTitle, imageUrl) {
     let posterFrame = document.createElement('div');
     // replace spaces in movie title with dashes
     let dashesMovieTitle = movieTitle.replace(/ /g, "-");
-    posterFrame.classList.add(dashesMovieTitle);
-    let img = document.createElement('img');
-
-    img.setAttribute('src', imageUrl);
     
+    // add event listener to each poster frame that calls a function
+    
+    let img = document.createElement('img');
+    
+    img.setAttribute('src', imageUrl);
+    img.classList.add(dashesMovieTitle);
+    
+    img.addEventListener('click', function() {
+        getMovieClassName(event);
+    })
     posterContainer.append(posterFrame);
     posterFrame.append(img);
 
 }
+
+// add movie details to bottom of page (for now) when poster is clicked on
+function getMovieClassName(event) {
+    let dashesMovieTitle = event.target.classList[0];
+    // convert dashes movie title back to spaces
+    let movieTitle = dashesMovieTitle.replace(/-/g, " ");
+    console.log(movieTitle);
+}
+
+
 
