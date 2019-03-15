@@ -49,6 +49,7 @@ function storeShowTimeData(showtimeDatas) {
 
 function fetchOmdbData(movieTitle) {
     const omdbUrl = `http://www.omdbapi.com/?apikey=48ba5f31&t=${movieTitle}`
+    let title = movieTitle;
     fetch(omdbUrl)
     .then (function(response) {
         console.log(response);
@@ -58,13 +59,16 @@ function fetchOmdbData(movieTitle) {
         console.log(movieData)
         let imageUrl = movieData.Poster
         console.log(imageUrl)
-        drawMoviePoster(imageUrl)
+        drawMoviePoster(title, imageUrl)
     })
 }
 
-function drawMoviePoster(imageUrl) {
+function drawMoviePoster(movieTitle, imageUrl) {
     let posterContainer = document.querySelector('[data-postercontainer]');
     let posterFrame = document.createElement('div');
+    // replace spaces in movie title with dashes
+    let dashesMovieTitle = movieTitle.replace(/ /g, "-");
+    posterFrame.classList.add(dashesMovieTitle);
     let img = document.createElement('img');
 
     img.setAttribute('src', imageUrl);
