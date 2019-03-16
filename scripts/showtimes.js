@@ -1,5 +1,5 @@
 function fetchShowtimeData(date) {
-
+    console.log(date);
     let dateArray = date.split(' ');
     const dateOnly = dateArray[0];
 
@@ -101,6 +101,7 @@ function drawMoviePoster(STmovieTitle, imageUrl, omdbMovieData) {
 
 // add movie details to bottom of page (for now) when poster is clicked on
 function getMovieClassName(event) {
+
     let underscoreMovieTitle = event.target.classList[0];
     // convert dashes movie title back to spaces
     let STmovieTitle = underscoreMovieTitle.replace(/_/g, " ");
@@ -148,6 +149,22 @@ function appendTheaterDetails(STMovieObject, uniqueTheatersArray) {
     
     uniqueTheatersArray.forEach(function(theaterName) {
         let movieDetailsDiv = document.querySelector('[data-info-pop]')
+
+        // unhide movie details div
+
+        movieDetailsDiv.classList.remove('hidden');
+
+        // point to the exit button in details div
+        let detailsExitButton = document.querySelector('[data-exit-details]');
+
+        
+        movieDetailsDiv.addEventListener('click', function() {
+            movieDetailsDiv.classList.add('hidden');
+            movieDetailsDiv.textContent = '';
+            console.log(movieDetailsDiv.childNodes);
+            
+        })
+
         let theaterNameH2 = document.createElement('h2')
         // set text content of h2 to the unique theater name
         theaterNameH2.textContent = theaterName;

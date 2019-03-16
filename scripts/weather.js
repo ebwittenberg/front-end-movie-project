@@ -18,6 +18,7 @@ function getWeatherData(zipcode) {
         })
         // take the second promise and call function that appends the city info, and function that will find rainy days
         .then(function(weatherObject) {
+            console.log(weatherObject);
             createCityInfo(weatherObject);
             allRainyDays(weatherObject);
         })
@@ -41,6 +42,7 @@ function createCityInfo(weatherObject) {
 function allRainyDays(weatherObject) {
     // array of data for each 3 hour period for 5 days
     let daysArray = weatherObject.list
+    console.log(daysArray);
     // initialize empty array of rainy days
     let rainyDays = [];
     // loop through daysArray
@@ -51,6 +53,7 @@ function allRainyDays(weatherObject) {
             rainyDays.push(day.dt_txt);
         }
     })
+    console.log(rainyDays);
     firstRainyDay(rainyDays);
 }
 
@@ -68,7 +71,7 @@ function firstRainyDay(rainyDaysArray) {
     rainyH2.textContent = dayOfWeek;
 
     weatherDiv.append(rainyH2);
-
+    console.log(firstRainDay);
     fetchShowtimeData(firstRainDay);
 
 }
