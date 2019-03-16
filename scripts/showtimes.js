@@ -159,10 +159,38 @@ function appendTheaterDetails(STMovieObject, uniqueTheatersArray) {
             if (showtime.theatre.name === theaterName) {
                 // create paragraph element for the showtime
                 let showtimePara = document.createElement('p')
+
+                // converts show times to AM/PM
+                let timeNoDate = (showtime.dateTime).split('T')
+                // console.log (timeNoDate[1])
+                let armyTime = timeNoDate[1]
+                let armyTimeString = armyTime.toString()
+                // console.log(armyTimeString)
+                let splitTimeArray = armyTimeString.split(':')
+                console.log(splitTimeArray)
+                let hours = Number(splitTimeArray[0]);
+                let minutes = Number(splitTimeArray[1]);
+                let convertedTime;
+
+                if (hours > 0 && hours <= 12) {
+                    convertedTime= "" + hours;
+                } else if (hours > 12) {
+                    convertedTime= "" + (hours - 12);
+                } else if (hours == 0) {
+                    convertedTime= "12";
+                }
+                
+                convertedTime += (minutes < 10) ? ":0" + minutes : ":" + minutes;  // get minutes
+                convertedTime += (hours >= 12) ? " P.M." : " A.M.";  // get AM/PM
+                console.log(convertedTime)
+
+
+
+
                 // puts actual show time as text content
                 showtimePara.textContent = showtime.dateTime
                 // append para to popup div
-                movieDetailsDiv.append(showtimePara);
+                movieDetailsDiv.append(convertedTime);
             }
         })
     
@@ -184,11 +212,11 @@ function appendMovieDetails(STMovieObject) {
 
     movieDetailsDiv.append(movieSummaryH2);
 
-     // draws movie MCAA rating into pop up div
-     let MCAARatingH2 = document.createElement('h2')
-     MCAARatingH2.textContent = parsedOmdbMovieInfo.Rated
+    // draws movie MCAA rating into pop up div
+    let MCAARatingH2 = document.createElement('h2')
+    MCAARatingH2.textContent = parsedOmdbMovieInfo.Rated
  
-     movieDetailsDiv.append(MCAARatingH2);
+    movieDetailsDiv.append(MCAARatingH2);
 
 
     // draws IMDB review into pop up div
