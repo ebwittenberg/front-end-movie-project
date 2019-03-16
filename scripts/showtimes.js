@@ -196,16 +196,17 @@ function appendTheaterDetails(STMovieObject, uniqueTheatersArray) {
             // only want to append the showtimes that correspond to the matching theater names
             if (showtime.theatre.name === theaterName) {
                 // create paragraph element for the showtime
-                let showtimePara = document.createElement('p')
+                let showtimePara = document.createElement('p');
+                showtimePara.classList.add('showtime');
 
                 // converts show times to AM/PM
-                let timeNoDate = (showtime.dateTime).split('T')
+                let timeNoDate = (showtime.dateTime).split('T');
                 // console.log (timeNoDate[1])
-                let armyTime = timeNoDate[1]
-                let armyTimeString = armyTime.toString()
+                let armyTime = timeNoDate[1];
+                let armyTimeString = armyTime.toString();
                 // console.log(armyTimeString)
-                let splitTimeArray = armyTimeString.split(':')
-                console.log(splitTimeArray)
+                let splitTimeArray = armyTimeString.split(':');
+                console.log(splitTimeArray);
                 let hours = Number(splitTimeArray[0]);
                 let minutes = Number(splitTimeArray[1]);
                 let convertedTime;
@@ -226,9 +227,9 @@ function appendTheaterDetails(STMovieObject, uniqueTheatersArray) {
 
 
                 // puts actual show time as text content
-                showtimePara.textContent = showtime.dateTime
+                showtimePara.textContent = convertedTime
                 // append para to popup div
-                movieDetailsDiv.append(convertedTime);
+                movieDetailsDiv.append(showtimePara);
             }
         })
     
