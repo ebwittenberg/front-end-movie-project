@@ -153,9 +153,16 @@ function appendTheaterDetails(STMovieObject, uniqueTheatersArray) {
         // unhide movie details div
 
         movieDetailsDiv.classList.remove('hidden');
+
+        // point to the exit button in details div
+        let detailsExitButton = document.querySelector('[data-exit-details]');
+
+        
         movieDetailsDiv.addEventListener('click', function() {
             movieDetailsDiv.classList.add('hidden');
             movieDetailsDiv.textContent = '';
+            console.log(movieDetailsDiv.childNodes);
+            
         })
 
         let theaterNameH2 = document.createElement('h2')
