@@ -73,12 +73,13 @@ function drawMoviePoster(STmovieTitle, imageUrl, omdbMovieData) {
         // replace poster art with movie title text
         let backupPosterText = document.createElement('h2');
         backupPosterText.textContent = STmovieTitle;
+        posterFrame.classList.add(underscoreMovieTitle);
         posterFrame.append(backupPosterText);
         posterContainer.append(posterFrame);
 
         backupPosterText.classList.add(underscoreMovieTitle);
 
-        backupPosterText.addEventListener('click', function() {
+        posterFrame.addEventListener('click', function() {
             getMovieClassName(event);
         })
 
@@ -104,7 +105,18 @@ function drawMoviePoster(STmovieTitle, imageUrl, omdbMovieData) {
 // add movie details to bottom of page (for now) when poster is clicked on
 function getMovieClassName(event) {
 
-    let underscoreMovieTitle = event.target.classList[0];
+    console.log(event.target);
+    console.log(event.target.classList);
+    let underscoreMovieTitle;
+    // if user clicks on movie that has no poster
+    if (event.target.classList[1]) {
+        // pull movie title from second class
+        underscoreMovieTitle = event.target.classList[1]
+    } else {
+        // pull movie title from class on image
+        underscoreMovieTitle = event.target.classList[0];
+    }
+    console.log(underscoreMovieTitle);
     // convert dashes movie title back to spaces
     let STmovieTitle = underscoreMovieTitle.replace(/_/g, " ");
 
@@ -148,6 +160,8 @@ function buildUniqueTheaterArray(showtimes) {
 
 // shows theater name in larger text, with showtimes at that theater following it
 function appendTheaterDetails(STMovieObject, uniqueTheatersArray) {
+
+    console.log('this is running');
     
     uniqueTheatersArray.forEach(function(theaterName) {
         let movieDetailsDiv = document.querySelector('[data-info-pop]')
