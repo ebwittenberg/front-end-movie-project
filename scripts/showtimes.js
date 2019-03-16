@@ -149,10 +149,13 @@ function appendTheaterDetails(STMovieObject, uniqueTheatersArray) {
     
     uniqueTheatersArray.forEach(function(theaterName) {
         let movieDetailsDiv = document.querySelector('[data-info-pop]')
+        let mainDiv = document.querySelector('[data-main]');
 
         // unhide movie details div
 
         movieDetailsDiv.classList.remove('hidden');
+        mainDiv.classList.add('blurry');
+
 
         // point to the exit button in details div
         let detailsExitButton = document.querySelector('[data-exit-details]');
@@ -160,6 +163,7 @@ function appendTheaterDetails(STMovieObject, uniqueTheatersArray) {
         
         movieDetailsDiv.addEventListener('click', function() {
             movieDetailsDiv.classList.add('hidden');
+            mainDiv.classList.remove('blurry');
             movieDetailsDiv.textContent = '';
             console.log(movieDetailsDiv.childNodes);
             
