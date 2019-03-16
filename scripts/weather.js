@@ -31,7 +31,7 @@ function createCityInfo(weatherObject) {
     // creates a h2 element for city info
     let cityH2 = document.createElement('h2');
     // assigns text content
-    cityH2.textContent = `Rain is expected in ${weatherObject.city.name} on: `;
+    cityH2.textContent = `Rain is expected in ${weatherObject.city.name} this `;
 
     // puts the city h2 info into the weatherDiv
     weatherDiv.append(cityH2);
