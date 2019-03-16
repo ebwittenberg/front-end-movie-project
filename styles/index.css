@@ -82,3 +82,22 @@ html, body {
 
   padding: auto;
 }
+
+.zip-code-search {
+  width: 50%;
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+}
+
+.search-bar {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.zip-code-search.hidden {
+  display: none;
+}
