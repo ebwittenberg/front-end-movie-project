@@ -268,3 +268,14 @@ function appendMovieDetails(STMovieObject) {
     movieDetailsDiv.append(ratingsH2);
 
 }
+
+// if search again is clicked, go back to search bar
+
+function resetSearch() {
+    const searchAgain = document.querySelector('[data-search-again]');
+    searchAgain.addEventListener('click', function() {
+        console.log('reset started');
+        location.reload();
+    });
+}
+

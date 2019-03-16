@@ -146,3 +146,7 @@ input:focus {
 .zip-code-search.hidden {
   display: none;
 }
+
+.search-again {
+  margin-left: 10px;
+}
