@@ -63,6 +63,8 @@ function fetchOmdbData(movieTitle) {
 function drawMoviePoster(STmovieTitle, imageUrl, omdbMovieData) {
     let posterContainer = document.querySelector('[data-postercontainer]');
     let posterFrame = document.createElement('div');
+    // gives each poster frame a class so we can style it
+    posterFrame.classList.add('poster-frame');
     // replace spaces in movie title with dashes
     let underscoreMovieTitle = STmovieTitle.replace(/ /g, "_");
     
