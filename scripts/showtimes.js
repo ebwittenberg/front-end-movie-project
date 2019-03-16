@@ -161,29 +161,30 @@ function buildUniqueTheaterArray(showtimes) {
 // shows theater name in larger text, with showtimes at that theater following it
 function appendTheaterDetails(STMovieObject, uniqueTheatersArray) {
 
-    console.log('this is running');
     
     uniqueTheatersArray.forEach(function(theaterName) {
         let movieDetailsDiv = document.querySelector('[data-info-pop]')
         let mainDiv = document.querySelector('[data-main]');
+        let body = document.querySelector('body');
 
         // unhide movie details div
 
         movieDetailsDiv.classList.remove('hidden');
         mainDiv.classList.add('blurry');
 
-
-        // point to the exit button in details div
-        let detailsExitButton = document.querySelector('[data-exit-details]');
-
-        
-        movieDetailsDiv.addEventListener('click', function() {
-            movieDetailsDiv.classList.add('hidden');
-            mainDiv.classList.remove('blurry');
-            movieDetailsDiv.textContent = '';
-            console.log(movieDetailsDiv.childNodes);
-            
+        body.addEventListener('click', function(event) {
+            if (event.target === body) {
+                console.log('clicked off details div');
+                movieDetailsDiv.classList.add('hidden');
+                mainDiv.classList.remove('blurry');
+                movieDetailsDiv.textContent = '';
+                console.log(movieDetailsDiv.childNodes);
+            }
         })
+
+    
+        // movieDetailsDiv.addEventListener('click', function() {
+        // })
 
         let theaterNameH2 = document.createElement('h2')
         // set text content of h2 to the unique theater name
