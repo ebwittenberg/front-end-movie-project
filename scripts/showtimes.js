@@ -161,29 +161,30 @@ function buildUniqueTheaterArray(showtimes) {
 // shows theater name in larger text, with showtimes at that theater following it
 function appendTheaterDetails(STMovieObject, uniqueTheatersArray) {
 
-    console.log('this is running');
     
     uniqueTheatersArray.forEach(function(theaterName) {
         let movieDetailsDiv = document.querySelector('[data-info-pop]')
         let mainDiv = document.querySelector('[data-main]');
+        let body = document.querySelector('body');
 
         // unhide movie details div
 
         movieDetailsDiv.classList.remove('hidden');
         mainDiv.classList.add('blurry');
 
-
-        // point to the exit button in details div
-        let detailsExitButton = document.querySelector('[data-exit-details]');
-
-        
-        movieDetailsDiv.addEventListener('click', function() {
-            movieDetailsDiv.classList.add('hidden');
-            mainDiv.classList.remove('blurry');
-            movieDetailsDiv.textContent = '';
-            console.log(movieDetailsDiv.childNodes);
-            
+        body.addEventListener('click', function(event) {
+            if (event.target === body) {
+                console.log('clicked off details div');
+                movieDetailsDiv.classList.add('hidden');
+                mainDiv.classList.remove('blurry');
+                movieDetailsDiv.textContent = '';
+                console.log(movieDetailsDiv.childNodes);
+            }
         })
+
+    
+        // movieDetailsDiv.addEventListener('click', function() {
+        // })
 
         let theaterNameH2 = document.createElement('h2')
         // set text content of h2 to the unique theater name
@@ -195,16 +196,17 @@ function appendTheaterDetails(STMovieObject, uniqueTheatersArray) {
             // only want to append the showtimes that correspond to the matching theater names
             if (showtime.theatre.name === theaterName) {
                 // create paragraph element for the showtime
-                let showtimePara = document.createElement('p')
+                let showtimePara = document.createElement('p');
+                showtimePara.classList.add('showtime');
 
                 // converts show times to AM/PM
-                let timeNoDate = (showtime.dateTime).split('T')
+                let timeNoDate = (showtime.dateTime).split('T');
                 // console.log (timeNoDate[1])
-                let armyTime = timeNoDate[1]
-                let armyTimeString = armyTime.toString()
+                let armyTime = timeNoDate[1];
+                let armyTimeString = armyTime.toString();
                 // console.log(armyTimeString)
-                let splitTimeArray = armyTimeString.split(':')
-                console.log(splitTimeArray)
+                let splitTimeArray = armyTimeString.split(':');
+                console.log(splitTimeArray);
                 let hours = Number(splitTimeArray[0]);
                 let minutes = Number(splitTimeArray[1]);
                 let convertedTime;
@@ -225,9 +227,9 @@ function appendTheaterDetails(STMovieObject, uniqueTheatersArray) {
 
 
                 // puts actual show time as text content
-                showtimePara.textContent = showtime.dateTime
+                showtimePara.textContent = convertedTime
                 // append para to popup div
-                movieDetailsDiv.append(convertedTime);
+                movieDetailsDiv.append(showtimePara);
             }
         })
     
@@ -266,3 +268,14 @@ function appendMovieDetails(STMovieObject) {
     movieDetailsDiv.append(ratingsH2);
 
 }
+
+// if search again is clicked, go back to search bar
+
+function resetSearch() {
+    const searchAgain = document.querySelector('[data-search-again]');
+    searchAgain.addEventListener('click', function() {
+        console.log('reset started');
+        location.reload();
+    });
+}
+
