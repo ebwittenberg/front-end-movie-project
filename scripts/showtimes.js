@@ -96,6 +96,7 @@ function drawMoviePoster(STmovieTitle, imageUrl, omdbMovieData) {
         img.addEventListener('click', function() {
             getMovieClassName(event);
         })
+        posterContainer.classList.remove('hidden');
         posterContainer.append(posterFrame);
         posterFrame.append(img);
     }
