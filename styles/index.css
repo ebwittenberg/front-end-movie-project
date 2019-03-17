@@ -24,9 +24,13 @@ div.weather {
   display: flex;
   top: 100px;
   width: 100%;
-  height: 100vh;
+  height: 78vh;
   flex-wrap: wrap;
   overflow: auto;
+}
+
+.poster-container.hidden {
+  display: none;
 }
 
 /* movie details div */
@@ -93,6 +97,9 @@ div.weather {
   height: auto;
   position: relative;
 }
+.poster-frame:hover {
+  cursor: pointer;
+}
 
 .poster-frame img {
   width: 100%;
@@ -147,6 +154,115 @@ input:focus {
   display: none;
 }
 
-.search-again {
+/* .search-again {
   margin-left: 10px;
+} */
+.site-logo {
+  width: 135px;
+  margin-top: 30px;
+  margin-left: 30px;
+}
+
+.site-logo:hover {
+  cursor: pointer;
+}
+
+.title{
+  color: white;
+  font-family: 'Helvetica Neue', helvetica, sans-serif;
+  font-size: 22px;
+  padding-inline-start: 2.5%;
+  top: -15px;
+  width: auto;
+}
+/* icon css */
+
+/* $bg-color: #181c1d;
+$bg-color-light: rgba(255, 255, 255, 0.2);
+$bg-color-lighter: rgba(255, 1255, 255, 0.1);
+$color-accent: white; */
+.nav-bar {
+    overflow: hidden;
+    position: fixed; /* Set the navbar to fixed position */
+    top: 0; /* Position the navbar at the top of the page */
+    width: 100%; /* Full width */
+}
+.icon {
+  position: relative;
+  display: inline-block;
+  background-color: black;
+  margin: 5%;
+  width: 4em;
+  height: 4em;
+  font-size: 1em;
+  margin-bottom: 5px;
+}
+
+.cloud2 {
+  color: black;
+  background: black;
+  position: absolute;
+  width: 3.4875em;
+  height: 3.4875em;
+  border-radius: 50%;
+  box-shadow: 2.0625em 0.9375em 0 -0.9375em, 0 0 0 0.375em white, 2.0625em 0.9375em 0 -0.5625em white;
+}
+
+.cloud2:after {
+  color: black;
+  background: black;
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 1.8em;
+  display: block;
+  width: 2.0em;
+  height: 1em;
+  box-shadow: 0 0.4375em 0 -0.0625em white;
+}
+
+.rain {
+  transform: translate(1.3em, 2.2em);
+  width: 2.8em;
+  height: 2.5em;
+  background: black;
+  position: absolute;
+}
+
+.rain:after {
+  content: '';
+  position: absolute;
+  display: block;
+  z-index: 2;
+  color: white;
+  background: white;
+  width: .3em;
+  height: 1.0em;
+  border-radius: .15em;
+  transform: translate(0.4em, 0.2em) rotate(20deg);
+  animation: rain 2s infinite ease-in-out;
+  box-shadow: .6em .6em, 1.2em -.2em, 1.2em 1.2em, 1.8em .2em;
+}
+
+@keyframes rain {
+  0% {
+    background-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0.6em 0.6em rgba(255, 255, 255, 0.2), 1.2em -0.2em rgba(255, 255, 255, 0.2), 1.2em 1.2em rgba(255, 255, 255, 0.2), 1.8em 0.2em rgba(255, 255, 255, 0.2);
+  }
+  30% {
+    background-color: white;
+    box-shadow: 0.6em 0.6em rgba(255, 255, 255, 0.2), 1.2em -0.2em white, 1.2em 1.2em rgba(255, 255, 255, 0.2), 1.8em 0.2em rgba(255, 255, 255, 0.2);
+  }
+  50% {
+    background-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0.6em 0.6em white, 1.2em -0.2em 0 rgba(255, 255, 255, 0.2), 1.2em 1.2em rgba(255, 255, 255, 0.2), 1.8em 0.2em white;
+  }
+  80% {
+    background-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0.6em 0.6em rgba(255, 255, 255, 0.2), 1.2em -0.2em rgba(255, 255, 255, 0.2), 1.2em 1.2em white, 1.8em 0.2em rgba(255, 255, 255, 0.2);
+  }
+  100% {
+    background-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0.6em 0.6em rgba(255, 255, 255, 0.2), 1.2em -0.2em rgba(255, 255, 255, 0.2), 1.2em 1.2em rgba(255, 255, 255, 0.2), 1.8em 0.2em rgba(255, 255, 255, 0.2);
+  }
 }
