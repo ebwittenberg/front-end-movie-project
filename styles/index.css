@@ -97,6 +97,9 @@ div.weather {
   height: auto;
   position: relative;
 }
+.poster-frame:hover {
+  cursor: pointer;
+}
 
 .poster-frame img {
   width: 100%;
@@ -156,8 +159,12 @@ input:focus {
 } */
 .site-logo {
   width: 135px;
-  margin-top: 20px;
-  margin-left: 20px;
+  margin-top: 30px;
+  margin-left: 30px;
+}
+
+.site-logo:hover {
+  cursor: pointer;
 }
 
 .title{
