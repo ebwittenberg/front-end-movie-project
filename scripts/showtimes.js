@@ -168,13 +168,15 @@ function appendTheaterDetails(STMovieObject, uniqueTheatersArray) {
         let mainDiv = document.querySelector('[data-main]');
         let body = document.querySelector('body');
 
+        let posterContainer = document.querySelector('[data-postercontainer]');
+
         // unhide movie details div
 
         movieDetailsDiv.classList.remove('hidden');
         mainDiv.classList.add('blurry');
 
         body.addEventListener('click', function(event) {
-            if (event.target === body) {
+            if (event.target === body || event.target === posterContainer) {
                 console.log('clicked off details div');
                 movieDetailsDiv.classList.add('hidden');
                 mainDiv.classList.remove('blurry');
