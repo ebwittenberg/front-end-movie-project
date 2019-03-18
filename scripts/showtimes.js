@@ -307,6 +307,7 @@ function searchMovies(movieList) {
 
     let searchedMovie = document.querySelector('[data-movie-search]').value;
     console.log(searchedMovie);
+
     let searchDiv = document.querySelector('[data-movie-search-div]');
     let underscoreSearchedMovie = searchedMovie.replace(' ', '_');
     let posters = document.querySelectorAll('.poster-frame');
@@ -316,7 +317,7 @@ function searchMovies(movieList) {
     noMatchH2.classList.add('no-match');
 
     posters.forEach(function(poster) {
-        if (underscoreSearchedMovie === poster.childNodes[0].className) {
+        if (poster.childNodes[0].className.includes(underscoreSearchedMovie)) {
             matchedPoster = poster;
             matchedPoster.classList.add('matched-poster')
         } else if (underscoreSearchedMovie !== poster.childNodes[0].className) {
