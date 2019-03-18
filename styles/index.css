@@ -252,6 +252,18 @@ body.only-info-popup .info-popup{
   text-decoration: underline;
 }
 
+
+.movie-search {
+  display: flex;
+  margin-right: 5px;
+}
+
+.matched-poster {
+  border: 2px solid red;
+  width: 300px;
+  height: 450px;
+}
+
 div.no-rain-container {
   position: absolute;
   width: 50%;
@@ -265,7 +277,6 @@ div.no-rain-container {
   text-align: center;
   font-family: 'Helvetica Neue', helvetica, sans-serif;
   font-weight: 200;
-  
 }
 
 .no-rain-container .no-rain {
