@@ -175,6 +175,20 @@ input:focus {
   top: -15px;
   width: auto;
 }
+
+.mini-poster-container {
+  width: 20%;
+  float: right;
+}
+
+.mini-poster-container img {
+  width: 100%;
+}
+
+
+
+
+
 /* icon css */
 
 /* $bg-color: #181c1d;

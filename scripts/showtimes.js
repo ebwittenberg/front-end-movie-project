@@ -103,8 +103,10 @@ function drawMoviePoster(STmovieTitle, imageUrl, omdbMovieData) {
 
 }
 
-// add movie details to bottom of page (for now) when poster is clicked on
+// add movie details when poster is clicked on
 function getMovieClassName(event) {
+
+    let popUpDiv = document.querySelector('[data-info-pop]');
 
     console.log(event.target);
     console.log(event.target.classList);
@@ -116,19 +118,29 @@ function getMovieClassName(event) {
     } else {
         // pull movie title from class on image
         underscoreMovieTitle = event.target.classList[0];
+        // add mini poster image
+        // save image URL
+        const posterURL = event.target.src;
+        let miniPosterImage = document.createElement('img');
+        let miniContainer = document.createElement('div');
+        miniContainer.classList.add('mini-poster-container');
+        miniPosterImage.setAttribute('src', posterURL);
+        miniContainer.append(miniPosterImage);
+        popUpDiv.append(miniContainer);
     }
     console.log(underscoreMovieTitle);
     // convert dashes movie title back to spaces
     let STmovieTitle = underscoreMovieTitle.replace(/_/g, " ");
-
+    
     let storedSTMovieData = localStorage.getItem('ST-movie-data');
     let parsedSTMovieData = JSON.parse(storedSTMovieData);
     parsedSTMovieData.forEach(function (STMovieObject) {
         if (STMovieObject.title === STmovieTitle) {
-            let movieTitleDiv = document.querySelector('[data-info-pop]');
+            let popUpDiv = document.querySelector('[data-info-pop]');
             let titleh2 = document.createElement('h2');
             titleh2.textContent = STMovieObject.title;
-            movieTitleDiv.append(titleh2);
+            popUpDiv.append(titleh2);
+            
 
             // this array has duplicate theaters in it that are all sorted together
             let movieTheaterArray = [];
@@ -137,6 +149,7 @@ function getMovieClassName(event) {
 
 
             })
+
             // unique theaters is an array with just the unique theater names
             let uniqueTheaters = buildUniqueTheaterArray(movieTheaterArray);
             appendMovieDetails(STMovieObject);
@@ -185,13 +198,20 @@ function appendTheaterDetails(STMovieObject, uniqueTheatersArray) {
             }
         })
 
-    
-        // movieDetailsDiv.addEventListener('click', function() {
-        // })
+        let theaterNameH2 = document.createElement('h2');
+        const link = document.createElement('a');
 
-        let theaterNameH2 = document.createElement('h2')
+        let mapsURL = `https://maps.google.com/?q=${theaterName}`;
+
+
+        // set href attribute of link to the google maps url of the theater's location
+        link.setAttribute('href', mapsURL);
+        link.setAttribute('target', '_blank');
         // set text content of h2 to the unique theater name
-        theaterNameH2.textContent = theaterName;
+        link.textContent = theaterName;
+
+        // add link to H2 element
+        theaterNameH2.append(link);
         movieDetailsDiv.append(theaterNameH2);
 
         // loop through the showtimes for that movie
@@ -263,7 +283,7 @@ function appendMovieDetails(STMovieObject) {
 
     // draws IMDB review into pop up div
     let ratingsH2 = document.createElement('h2');
-    ratingsH2.textContent = `IMDB Rating: ${parsedOmdbMovieInfo.imdbRating}`;
+    ratingsH2.textContent = `IMDB Rating: ${parsedOmdbMovieInfo.imdbRating} / 10`;
 
     if (parsedOmdbMovieInfo.imdbRating === "N/A") {
         ratingsH2.textContent = "";
