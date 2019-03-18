@@ -305,23 +305,25 @@ function appendMovieDetails(STMovieObject) {
 
 function searchMovies(movieList) {
 
-    let searchedMovie = document.querySelector('[data-movie-search]').value;
-    console.log(searchedMovie);
+    let searchedMovie = document.querySelector('[data-movie-search]').value.toLowerCase();
 
     let searchDiv = document.querySelector('[data-movie-search-div]');
     let underscoreSearchedMovie = searchedMovie.replace(' ', '_');
     let posters = document.querySelectorAll('.poster-frame');
+    console.log(posters);
     let noMatchDiv = document.querySelector('[data-no-match-info]');
+    let matchedPosters = [];
     let matchedPoster;
     let noMatchH2 = document.createElement('h2');
     noMatchH2.classList.add('no-match');
 
     posters.forEach(function(poster) {
-        if (poster.childNodes[0].className.includes(underscoreSearchedMovie)) {
+        let posterMovieName = poster.childNodes[0].className.toLowerCase();
+        if (posterMovieName.includes(underscoreSearchedMovie)) {
             matchedPoster = poster;
-            matchedPoster.classList.add('matched-poster')
-        } else if (underscoreSearchedMovie !== poster.childNodes[0].className) {
-            console.log(poster.childNodes[0].className)
+            matchedPoster.classList.add('matched-poster');
+            matchedPosters.push(matchedPoster);
+        } else if (underscoreSearchedMovie !== posterMovieName) {
             poster.style.display = 'none';
         }
     })
@@ -343,7 +345,9 @@ function searchMovies(movieList) {
         noMatchH2.textContent = '';
         h2.remove();
         if (matchedPoster) {
-            matchedPoster.classList.remove('matched-poster');
+            matchedPosters.forEach(function(poster) {
+                poster.classList.remove('matched-poster');
+            })
         }
         showAllMovies(posters);
     })
