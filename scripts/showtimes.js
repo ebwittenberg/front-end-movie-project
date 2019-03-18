@@ -3,10 +3,12 @@ function fetchShowtimeData(date) {
     let dateArray = date.split(' ');
     const dateOnly = dateArray[0];
 
-    let showtimeURL = `http://data.tmsapi.com/v1.1/movies/showings?startDate=${dateOnly}&zip=${zip}&api_key=36zekhh8ta2kuj2cujbj55rd`;
+    let showtimeURL = `http://data.tmsapi.com/v1.1/movies/showings?startDate=${dateOnly}&zip=${zip}&api_key=xguxvke7xybd3fsscb7h446v`;
     // showtime URL is going to give us all the movies that are playing in the zip code radius
     // returns a promise
-    fetch(showtimeURL)
+    const showtimeJson = '../json/atlMovies.json'
+
+    fetch(showtimeJson)
         .then(function(response) {
             return response.json()
         })
@@ -180,6 +182,9 @@ function appendTheaterDetails(STMovieObject, uniqueTheatersArray) {
         let movieDetailsDiv = document.querySelector('[data-info-pop]')
         let mainDiv = document.querySelector('[data-main]');
         let body = document.querySelector('body');
+        let nav = document.querySelector('.nav-bar');
+        let h2 = document.querySelectorAll('h2');
+        let logo = document.querySelector('.site-logo')
 
         let posterContainer = document.querySelector('[data-postercontainer]');
 
@@ -187,12 +192,16 @@ function appendTheaterDetails(STMovieObject, uniqueTheatersArray) {
 
         movieDetailsDiv.classList.remove('hidden');
         mainDiv.classList.add('blurry');
+        logo.classList.add('blurry');
+        body.classList.add('only-info-popup')
 
         body.addEventListener('click', function(event) {
-            if (event.target === body || event.target === posterContainer) {
+            if (event.target === body || event.target === posterContainer || event.target === nav || event.target === logo || event.target === h2) {
                 console.log('clicked off details div');
                 movieDetailsDiv.classList.add('hidden');
                 mainDiv.classList.remove('blurry');
+                logo.classList.remove('blurry');
+                body.classList.remove('only-info-popup');
                 movieDetailsDiv.textContent = '';
                 console.log(movieDetailsDiv.childNodes);
             }
@@ -243,11 +252,8 @@ function appendTheaterDetails(STMovieObject, uniqueTheatersArray) {
                 }
                 
                 convertedTime += (minutes < 10) ? ":0" + minutes : ":" + minutes;  // get minutes
-                convertedTime += (hours >= 12) ? " P.M." : " A.M.";  // get AM/PM
+                convertedTime += (hours >= 12) ? " PM" : " AM";  // get AM/PM
                 console.log(convertedTime)
-
-
-
 
                 // puts actual show time as text content
                 showtimePara.textContent = convertedTime
