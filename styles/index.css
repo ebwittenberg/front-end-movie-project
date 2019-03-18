@@ -46,7 +46,7 @@ div.weather h2:nth-child(3) {
   justify-content: center;
   top: 100px;
   width: 100%;
-  height: 78vh;
+  height: 70%;
   flex-wrap: wrap;
   overflow: auto;
   margin-top: 30px;
@@ -127,6 +127,7 @@ div.weather h2:nth-child(3) {
   position: fixed;
   left: 50%;
   transform: translate(-50%, 0);
+  height: 100%
 }
 
 /* when poster is clicked on, make everything else blurry */
@@ -177,8 +178,16 @@ div.weather h2:nth-child(3) {
   width: 100%;
   display: flex;
   justify-content: center;
-  margin: 0 auto;
+  /* margin: 0 auto; */
   font-family: 'Helvetica Neue', helvetica, sans-serif;
+}
+.no-match {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  /* margin: 0 auto; */
+  font-family: 'Helvetica Neue', helvetica, sans-serif;
+  font-weight: 200;
 }
 input {
     appearance: none;
@@ -260,10 +269,14 @@ body.only-info-popup .info-popup{
   display: flex;
   margin-right: 5px;
   z-index: 4;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  /* margin: 0 auto; */
+  font-family: 'Helvetica Neue', helvetica, sans-serif;
 }
 
 .matched-poster {
-  border: 2px solid red;
   width: 300px;
   height: 450px;
 }
