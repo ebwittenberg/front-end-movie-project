@@ -226,9 +226,6 @@ function appendTheaterDetails(STMovieObject, uniqueTheatersArray) {
                 convertedTime += (hours >= 12) ? " P.M." : " A.M.";  // get AM/PM
                 console.log(convertedTime)
 
-
-
-
                 // puts actual show time as text content
                 showtimePara.textContent = convertedTime
                 // append para to popup div

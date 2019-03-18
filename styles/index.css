@@ -99,6 +99,7 @@ div.weather {
   height: auto;
   position: relative;
 }
+
 .poster-frame:hover {
   cursor: pointer;
 }
@@ -147,18 +148,15 @@ input {
     color: rgb(255, 255, 255);
     transition: all .15s ease;
 }
+
 input:focus {
   outline: none;
 }
-
 
 .zip-code-search.hidden {
   display: none;
 }
 
-/* .search-again {
-  margin-left: 10px;
-} */
 .site-logo {
   width: 135px;
   margin-top: 30px;
