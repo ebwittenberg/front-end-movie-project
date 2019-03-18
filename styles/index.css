@@ -196,7 +196,7 @@ body.only-info-popup * {
   pointer-events: none;
 }
 
-body.only-info-popup .info-popup * {
+body.only-info-popup .info-popup{
   pointer-events: all;
 }
 
