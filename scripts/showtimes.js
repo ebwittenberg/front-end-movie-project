@@ -6,6 +6,7 @@ function fetchShowtimeData(date) {
     let showtimeURL = `http://data.tmsapi.com/v1.1/movies/showings?startDate=${dateOnly}&zip=${zip}&api_key=xguxvke7xybd3fsscb7h446v`;
     // showtime URL is going to give us all the movies that are playing in the zip code radius
     // returns a promise
+  
     const showtimeJson = '../json/atlMovies.json'
 
     fetch(showtimeJson)
@@ -13,6 +14,7 @@ function fetchShowtimeData(date) {
             return response.json()
         })
         .then(function(showtimeData) {
+            // this is an array!
             console.log(showtimeData);
 
             // puts all the showtimeData info in local storage for later use
@@ -110,13 +112,16 @@ function getMovieClassName(event) {
 
     let popUpDiv = document.querySelector('[data-info-pop]');
 
-    console.log(event.target);
+    console.log(event);
     console.log(event.target.classList);
     let underscoreMovieTitle;
     // if user clicks on movie that has no poster
     if (event.target.classList[1]) {
         // pull movie title from second class
         underscoreMovieTitle = event.target.classList[1]
+    } else if (event.target.localName === 'h2') {
+        
+        underscoreMovieTitle = event.target.classList[0];
     } else {
         // pull movie title from class on image
         underscoreMovieTitle = event.target.classList[0];

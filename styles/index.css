@@ -302,3 +302,40 @@ $color-accent: white; */
     box-shadow: 0.6em 0.6em rgba(255, 255, 255, 0.2), 1.2em -0.2em rgba(255, 255, 255, 0.2), 1.2em 1.2em rgba(255, 255, 255, 0.2), 1.8em 0.2em rgba(255, 255, 255, 0.2);
   }
 }
+
+/* media queries */
+
+@media (max-width: 740px) {
+  .poster-container {
+    justify-content: center;
+  }
+
+  .poster-frame {
+    width: 45%;
+  }
+}
+
+@media (max-width: 500px) {
+  .poster-frame {
+    width: 100%;
+  }
+
+  .info-popup {
+    width: 75%;
+  }
+
+  .site-logo {
+    display: block;
+  }
+  div.weather {
+    width: 50%;
+    float: right;
+    font-size: 13px;
+  }
+
+  div.poster-container {
+    margin-top: 50px;
+    height: 375px;
+  }
+
+}
