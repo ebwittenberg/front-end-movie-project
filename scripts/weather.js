@@ -19,8 +19,8 @@ function getWeatherData(zipcode) {
         // take the second promise and call function that appends the city info, and function that will find rainy days
         .then(function(weatherObject) {
             console.log(weatherObject);
-            createCityInfo(weatherObject);
             allRainyDays(weatherObject);
+            
         })
 }
 
@@ -28,11 +28,14 @@ function getWeatherData(zipcode) {
 function createCityInfo(weatherObject) {
     // creates pointer to weather div
     weatherDiv = document.querySelector('[data-weather]');
+    
     // creates a h2 element for city info
     let cityH2 = document.createElement('h2');
+    
     // assigns text content
     cityH2.textContent = `Rain is expected in ${weatherObject.city.name} this `;
-
+   
+    console.log(weatherObject.list[0].main);
     // puts the city h2 info into the weatherDiv
     weatherDiv.append(cityH2);
 
@@ -45,16 +48,47 @@ function allRainyDays(weatherObject) {
     console.log(daysArray);
     // initialize empty array of rainy days
     let rainyDays = [];
+
     // loop through daysArray
     daysArray.forEach(function(day) {
         // if we find a instance where it is raining
         if (day.weather[0].main === 'Rain') {
             // add the rainy instance to the array
             rainyDays.push(day.dt_txt);
+            
         }
+        
+        
     })
     console.log(rainyDays);
-    firstRainyDay(rainyDays);
+    //this if statement filters rediects code for 'no rain' events
+    //if rainyDays array has value then city will have rain so call next functions
+    if (rainyDays.length !== 0) {
+        createCityInfo(weatherObject);
+        firstRainyDay(rainyDays);
+    } else {
+        //grab target to print 'no rain statement/link' creates pointer to weather div
+        weatherDiv = document.querySelector('[data-weather]');
+       
+        // creates a h2 element for city info and a clickable a element for netflix link
+        let cityH2 = document.createElement('h2');
+        let netflixA = document.createElement('a');
+       
+        // sets the attributes of the text 'great outdoors' to have a href link that opens in a new tab
+        netflixA.setAttribute('href', 'https://netflix.com');
+        netflixA.setAttribute('target', '_blank');
+        netflixA.textContent = 'great outdoors';
+        
+        // assigns text content
+        cityH2.textContent = `Awsome!\nNo rain forecast for ${weatherObject.city.name}!\nWhy not enjoy the`;
+    
+        // puts the city h2 info into the weatherDiv
+        weatherDiv.append(cityH2);
+        weatherDiv.append(netflixA);
+        
+    }
+    
+
 }
 
 // this function will be passed the array of rainy days as an argument, it will take the first element in the array, and print it to the page
@@ -73,5 +107,5 @@ function firstRainyDay(rainyDaysArray) {
     weatherDiv.append(rainyH2);
     console.log(firstRainDay);
     fetchShowtimeData(firstRainDay);
-
+    
 }
