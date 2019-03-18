@@ -3,14 +3,16 @@ function fetchShowtimeData(date) {
     let dateArray = date.split(' ');
     const dateOnly = dateArray[0];
 
-    let showtimeURL = `http://data.tmsapi.com/v1.1/movies/showings?startDate=${dateOnly}&zip=${zip}&api_key=36zekhh8ta2kuj2cujbj55rd`;
+    let showtimeURL = `http://data.tmsapi.com/v1.1/movies/showings?startDate=${dateOnly}&zip=${zip}&api_key=xguxvke7xybd3fsscb7h446v`;
     // showtime URL is going to give us all the movies that are playing in the zip code radius
     // returns a promise
-    fetch(showtimeURL)
+
+    fetch('../json/atlMovies.json')
         .then(function(response) {
             return response.json()
         })
         .then(function(showtimeData) {
+            // this is an array!
             console.log(showtimeData);
 
             // puts all the showtimeData info in local storage for later use

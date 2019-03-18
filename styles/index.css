@@ -27,7 +27,6 @@ div.weather {
   height: 78vh;
   flex-wrap: wrap;
   overflow: auto;
-  border: 1px solid blue;
   margin-top: 60px;
 }
 
@@ -198,7 +197,6 @@ $color-accent: white; */
     position: fixed; /* Set the navbar to fixed position */
     top: 0; /* Position the navbar at the top of the page */
     width: 100%; /* Full width */
-    border: 1px solid red;
 }
 .icon {
   position: relative;
@@ -277,5 +275,23 @@ $color-accent: white; */
   100% {
     background-color: rgba(255, 255, 255, 0.2);
     box-shadow: 0.6em 0.6em rgba(255, 255, 255, 0.2), 1.2em -0.2em rgba(255, 255, 255, 0.2), 1.2em 1.2em rgba(255, 255, 255, 0.2), 1.8em 0.2em rgba(255, 255, 255, 0.2);
+  }
+}
+
+/* media queries */
+
+@media (max-width: 740px) {
+  .poster-container {
+    justify-content: center;
+  }
+
+  .poster-frame {
+    width: 45%;
+  }
+}
+
+@media (max-width: 500px) {
+  .poster-frame {
+    width: 75%;
   }
 }
