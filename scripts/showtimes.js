@@ -7,7 +7,7 @@ function fetchShowtimeData(date) {
     let showtimeURL = `http://data.tmsapi.com/v1.1/movies/showings?startDate=${dateOnly}&zip=${zip}&api_key=xguxvke7xybd3fsscb7h446v`;
     // showtime URL is going to give us all the movies that are playing in the zip code radius
     // returns a promise
-  
+
     const showtimeJson = '../json/atlMovies.json'
 
     fetch(showtimeJson)
@@ -358,14 +358,7 @@ function showAllMovies(posters) {
     posters.forEach(function(poster) {
         poster.style.display = 'block';
     })
-
 }
-
-
-
-
-
-
 
 // if search again is clicked, go back to search bar
 function resetSearch() {
