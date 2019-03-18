@@ -68,23 +68,30 @@ function allRainyDays(weatherObject) {
         firstRainyDay(rainyDays);
     } else {
         //grab target to print 'no rain statement/link' creates pointer to weather div
-        weatherDiv = document.querySelector('[data-weather]');
-       
+        mainDiv = document.querySelector('[data-main]');
+        let noRainDiv = document.createElement('div');
+        noRainDiv.setAttribute('data-no-rain', '')
+        noRainDiv.classList.add('no-rain-container')
+        mainDiv.append(noRainDiv)
+        noRainContainer = document.querySelector('[data-no-rain]')
+
         // creates a h2 element for city info and a clickable a element for netflix link
         let cityH2 = document.createElement('h2');
+        cityH2.classList.add('no-rain');
         let netflixA = document.createElement('a');
-       
+
         // sets the attributes of the text 'great outdoors' to have a href link that opens in a new tab
         netflixA.setAttribute('href', 'https://netflix.com');
         netflixA.setAttribute('target', '_blank');
-        netflixA.textContent = 'great outdoors';
+        netflixA.classList.add('netflix-link');
+        netflixA.textContent = 'Great Outdoors';
         
         // assigns text content
-        cityH2.textContent = `Awsome!\nNo rain forecast for ${weatherObject.city.name}!\nWhy not enjoy the`;
+        cityH2.textContent = `Awesome!\nNo rain forecast for ${weatherObject.city.name}!\nWhy not enjoy the`;
     
         // puts the city h2 info into the weatherDiv
-        weatherDiv.append(cityH2);
-        weatherDiv.append(netflixA);
+        noRainDiv.append(cityH2);
+        noRainDiv.append(netflixA);
         
     }
     
@@ -107,7 +114,11 @@ function firstRainyDay(rainyDaysArray) {
     let rainyH2 = document.createElement('h2');
     rainyH2.textContent = dayOfWeek;
 
+    let moviePresentationH2 = document.createElement('h2');
+    moviePresentationH2.textContent = 'See below for a list of movies playing in your area.';
+
     weatherDiv.append(rainyH2);
+    weatherDiv.append(moviePresentationH2);
     console.log(firstRainDay);
     fetchShowtimeData(firstRainDay);
     
