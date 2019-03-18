@@ -292,6 +292,25 @@ $color-accent: white; */
 
 @media (max-width: 500px) {
   .poster-frame {
+    width: 100%;
+  }
+
+  .info-popup {
     width: 75%;
   }
+
+  .site-logo {
+    display: block;
+  }
+  div.weather {
+    width: 50%;
+    float: right;
+    font-size: 13px;
+  }
+
+  div.poster-container {
+    margin-top: 50px;
+    height: 375px;
+  }
+
 }

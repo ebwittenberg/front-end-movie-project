@@ -63,8 +63,11 @@ function firstRainyDay(rainyDaysArray) {
     // save first rainy instance in array
     // 2019-03-15 00:00:00
     let firstRainDay = rainyDaysArray[0];
+    let fullDate = firstRainDay.split(' ');
+    let justDate = fullDate[0];
+
     const daysOfTheWeekArray =['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday',]
-    let dt = new Date(firstRainDay);
+    let dt = new Date(justDate);
     let dayOfWeekIndex = dt.getDay()
     let dayOfWeek = daysOfTheWeekArray[dayOfWeekIndex]
     let rainyH2 = document.createElement('h2');
