@@ -31,8 +31,6 @@ function fetchShowtimeData(date) {
             movieTitles.forEach(function(title) {
                 fetchOmdbData(title);
             })
-
-            
         })
 }
 
@@ -304,8 +302,29 @@ function appendMovieDetails(STMovieObject) {
 
 }
 
-// if search again is clicked, go back to search bar
 
+function searchMovies(movieList) {
+
+    let searchedMovie = document.querySelector('[data-movie-search]').value;
+    let underscoreSearchedMovie = searchedMovie.replace(' ', '_');
+    let posters = document.querySelectorAll('.poster-frame');
+    console.log(posters);
+    console.log(underscoreSearchedMovie);
+
+    posters.forEach(function(poster) {
+        if (underscoreSearchedMovie !== poster.childNodes[0].className) {
+            poster.style.display = 'none';
+        }
+    })
+}
+
+
+
+
+
+
+
+// if search again is clicked, go back to search bar
 function resetSearch() {
     const searchAgain = document.querySelector('[data-search-again]');
     searchAgain.addEventListener('click', function() {

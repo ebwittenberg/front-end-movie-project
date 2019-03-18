@@ -80,7 +80,7 @@ function allRainyDays(weatherObject) {
         netflixA.textContent = 'great outdoors';
         
         // assigns text content
-        cityH2.textContent = `Awsome!\nNo rain forecast for ${weatherObject.city.name}!\nWhy not enjoy the`;
+        cityH2.textContent = `Awesome!\nNo rain forecast for ${weatherObject.city.name}!\nWhy not enjoy the`;
     
         // puts the city h2 info into the weatherDiv
         weatherDiv.append(cityH2);
