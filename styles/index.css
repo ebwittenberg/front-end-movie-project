@@ -161,12 +161,15 @@ input:focus {
   width: 100px;
   margin-top: 30px;
   margin-left: 30px;
+  filter: brightness(50%);
   
 }
 
 .site-logo:hover {
   cursor: pointer;
+  filter: brightness(100%);
 }
+
 
 .title{
   color: white;
