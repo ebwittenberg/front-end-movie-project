@@ -22,6 +22,7 @@ div.weather {
 
 .poster-container {
   display: flex;
+  justify-content: center;
   top: 100px;
   width: 100%;
   height: 78vh;
@@ -98,6 +99,7 @@ div.weather {
   height: auto;
   position: relative;
 }
+
 .poster-frame:hover {
   cursor: pointer;
 }
@@ -146,22 +148,20 @@ input {
     color: rgb(255, 255, 255);
     transition: all .15s ease;
 }
+
 input:focus {
   outline: none;
 }
-
 
 .zip-code-search.hidden {
   display: none;
 }
 
-/* .search-again {
-  margin-left: 10px;
-} */
 .site-logo {
-  width: 135px;
+  width: 100px;
   margin-top: 30px;
   margin-left: 30px;
+  
 }
 
 .site-logo:hover {
@@ -186,6 +186,25 @@ input:focus {
   width: 100%;
 }
 
+/* turns off background when viewing movie data popup */
+body.only-info-popup * {
+  pointer-events: none;
+}
+
+body.only-info-popup .info-popup{
+  pointer-events: all;
+}
+
+.info-popup a {
+  pointer-events: all;
+  text-decoration: none;
+  color: white;
+}
+
+.info-popup a:hover {
+  text-decoration: underline;
+}
+
 /* icon css */
 
 /* $bg-color: #181c1d;
@@ -198,11 +217,17 @@ $color-accent: white; */
     top: 0; /* Position the navbar at the top of the page */
     width: 100%; /* Full width */
 }
+
+.site-logo.blurry {
+  filter: blur(5px);
+}
+
 .icon {
   position: relative;
   display: inline-block;
   background-color: black;
   margin: 5%;
+  padding-left: 1px;
   width: 4em;
   height: 4em;
   font-size: 1em;
