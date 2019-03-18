@@ -256,7 +256,7 @@ function appendTheaterDetails(STMovieObject, uniqueTheatersArray) {
                 }
                 
                 convertedTime += (minutes < 10) ? ":0" + minutes : ":" + minutes;  // get minutes
-                convertedTime += (hours >= 12) ? " PM" : " AM";  // get AM/PM
+                convertedTime += (hours >= 12) ? "pm" : "am";  // get AM/PM
                 console.log(convertedTime)
 
                 // puts actual show time as text content
