@@ -115,6 +115,9 @@ function getMovieClassName(event) {
     if (event.target.classList[1]) {
         // pull movie title from second class
         underscoreMovieTitle = event.target.classList[1]
+    } else if (event.target.localName === 'h2') {
+        
+        underscoreMovieTitle = event.target.classList[0];
     } else {
         // pull movie title from class on image
         underscoreMovieTitle = event.target.classList[0];
