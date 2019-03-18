@@ -306,16 +306,54 @@ function appendMovieDetails(STMovieObject) {
 function searchMovies(movieList) {
 
     let searchedMovie = document.querySelector('[data-movie-search]').value;
+    console.log(searchedMovie);
+    let searchDiv = document.querySelector('[data-movie-search-div]');
     let underscoreSearchedMovie = searchedMovie.replace(' ', '_');
     let posters = document.querySelectorAll('.poster-frame');
-    console.log(posters);
-    console.log(underscoreSearchedMovie);
+    let noMatchDiv = document.querySelector('[data-no-match-info]');
+    let matchedPoster;
+    let noMatchH2 = document.createElement('h2');
+    noMatchH2.classList.add('no-match');
 
     posters.forEach(function(poster) {
-        if (underscoreSearchedMovie !== poster.childNodes[0].className) {
+        if (underscoreSearchedMovie === poster.childNodes[0].className) {
+            matchedPoster = poster;
+            matchedPoster.classList.add('matched-poster')
+        } else if (underscoreSearchedMovie !== poster.childNodes[0].className) {
+            console.log(poster.childNodes[0].className)
             poster.style.display = 'none';
         }
     })
+    let h2 = document.createElement('h2');
+    h2.textContent = 'X';
+    searchDiv.append(h2);
+
+    if (!matchedPoster) {
+        noMatchH2.textContent = 'This movie is not playing in your area. Try another?'
+        noMatchDiv.append(noMatchH2);
+    }
+
+
+
+    h2.addEventListener('click', function() {
+
+        let inputField = document.querySelector('[data-movie-search]');
+        inputField.value = '';
+        noMatchH2.textContent = '';
+        h2.remove();
+        if (matchedPoster) {
+            matchedPoster.classList.remove('matched-poster');
+        }
+        showAllMovies(posters);
+    })
+
+}
+
+function showAllMovies(posters) {
+    posters.forEach(function(poster) {
+        poster.style.display = 'block';
+    })
+
 }
 
 
