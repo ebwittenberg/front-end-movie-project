@@ -6,7 +6,9 @@ function fetchShowtimeData(date) {
     let showtimeURL = `http://data.tmsapi.com/v1.1/movies/showings?startDate=${dateOnly}&zip=${zip}&api_key=xguxvke7xybd3fsscb7h446v`;
     // showtime URL is going to give us all the movies that are playing in the zip code radius
     // returns a promise
-    fetch(showtimeURL)
+    const showtimeJson = '../json/atlMovies.json'
+
+    fetch(showtimeJson)
         .then(function(response) {
             return response.json()
         })
@@ -191,7 +193,7 @@ function appendTheaterDetails(STMovieObject, uniqueTheatersArray) {
         movieDetailsDiv.classList.remove('hidden');
         mainDiv.classList.add('blurry');
         logo.classList.add('blurry');
-        logo.removeAttribute('.data-search-again');
+        body.classList.add('only-info-popup')
 
         body.addEventListener('click', function(event) {
             if (event.target === body || event.target === posterContainer || event.target === nav || event.target === logo || event.target === h2) {
@@ -199,7 +201,7 @@ function appendTheaterDetails(STMovieObject, uniqueTheatersArray) {
                 movieDetailsDiv.classList.add('hidden');
                 mainDiv.classList.remove('blurry');
                 logo.classList.remove('blurry');
-                logo.setAttribute('data-search-again', '');
+                body.classList.remove('only-info-popup');
                 movieDetailsDiv.textContent = '';
                 console.log(movieDetailsDiv.childNodes);
             }

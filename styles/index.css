@@ -191,6 +191,15 @@ input:focus {
   width: 100%;
 }
 
+/* turns off background when viewing movie data popup */
+body.only-info-popup * {
+  pointer-events: none;
+}
+
+body.only-info-popup .info-popup * {
+  pointer-events: all;
+}
+
 /* icon css */
 
 /* $bg-color: #181c1d;
