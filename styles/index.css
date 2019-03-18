@@ -49,7 +49,7 @@ div.weather h2:nth-child(3) {
   height: 78vh;
   flex-wrap: wrap;
   overflow: auto;
-  margin-top: 60px;
+  margin-top: 30px;
 }
 
 .poster-container.hidden {
@@ -124,6 +124,9 @@ div.weather h2:nth-child(3) {
 .main {
   width: 65%;
   margin: 0 auto;
+  position: fixed;
+  left: 50%;
+  transform: translate(-50%, 0);
 }
 
 /* when poster is clicked on, make everything else blurry */
@@ -256,6 +259,7 @@ body.only-info-popup .info-popup{
 .movie-search {
   display: flex;
   margin-right: 5px;
+  z-index: 4;
 }
 
 .matched-poster {
@@ -305,7 +309,8 @@ $color-accent: white; */
     overflow: hidden;
     position: fixed; /* Set the navbar to fixed position */
     top: 0; /* Position the navbar at the top of the page */
-    width: 100%; /* Full width */
+    width: 20%; /* Full width */
+    float: left;
 }
 
 .site-logo.blurry {
