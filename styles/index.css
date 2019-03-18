@@ -17,7 +17,28 @@ div.weather {
   text-align: center;
   font-family: 'Helvetica Neue', helvetica, sans-serif;
   font-weight: 200;
+  /* font-size: 50px;
+  font-weight: 400; */
 
+}
+
+div.weather h2:nth-child(1) {
+  font-size: 24px;
+  font-weight: 200;
+  margin-bottom: 0;
+}
+
+div.weather h2:nth-child(2) {
+  font-size: 34px;
+  font-weight: 400;
+  margin-top: 0;
+}
+
+div.weather h2:nth-child(3) {
+  font-size: 18px;
+  font-weight: 200;
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
 
 .poster-container {
@@ -62,6 +83,29 @@ div.weather {
 }
 .info-popup h2{
   font-weight: 200;
+}
+
+.info-popup h2:nth-child(2) {
+  font-weight: 400;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.info-popup h2:nth-child(3) {
+  font-size: 18px;
+  margin-top: 5px;
+}
+.info-popup h2:nth-child(4) {
+  font-size: 20px;
+  font-weight: 400;
+}
+.info-popup h2:nth-child(5) {
+  font-size: 18px;
+}
+.info-popup h2:nth-child(n+6) {
+  margin-bottom: 5px;
+}
+.info-popup p {
+  margin: 2px;
 }
 
 /* movie details div default is hidden */
@@ -205,6 +249,38 @@ body.only-info-popup .info-popup{
 }
 
 .info-popup a:hover {
+  text-decoration: underline;
+}
+
+div.no-rain-container {
+  position: absolute;
+  width: 50%;
+  overflow: auto;
+  height: 350px;
+  left: 50%;
+  margin-left: -25%;
+  top: 40%;
+  /* left: 50%; */
+  color: white;
+  text-align: center;
+  font-family: 'Helvetica Neue', helvetica, sans-serif;
+  font-weight: 200;
+  
+}
+
+.no-rain-container .no-rain {
+  font-weight: 200;
+}
+
+.no-rain-container .netflix-link {
+  pointer-events: all;
+  text-decoration: none;
+  color: white;
+  font-size: 50px;
+  font-weight: 400;
+}
+
+.no-rain-container .netflix-link:hover {
   text-decoration: underline;
 }
 
