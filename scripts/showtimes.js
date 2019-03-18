@@ -185,13 +185,20 @@ function appendTheaterDetails(STMovieObject, uniqueTheatersArray) {
             }
         })
 
-    
-        // movieDetailsDiv.addEventListener('click', function() {
-        // })
+        let theaterNameH2 = document.createElement('h2');
+        const link = document.createElement('a');
 
-        let theaterNameH2 = document.createElement('h2')
+        let mapsURL = `https://maps.google.com/?q=${theaterName}`;
+
+
+        // set href attribute of link to the google maps url of the theater's location
+        link.setAttribute('href', mapsURL);
+        link.setAttribute('target', '_blank');
         // set text content of h2 to the unique theater name
-        theaterNameH2.textContent = theaterName;
+        link.textContent = theaterName;
+
+        // add link to H2 element
+        theaterNameH2.append(link);
         movieDetailsDiv.append(theaterNameH2);
 
         // loop through the showtimes for that movie
@@ -263,7 +270,7 @@ function appendMovieDetails(STMovieObject) {
 
     // draws IMDB review into pop up div
     let ratingsH2 = document.createElement('h2');
-    ratingsH2.textContent = `IMDB Rating: ${parsedOmdbMovieInfo.imdbRating}`;
+    ratingsH2.textContent = `IMDB Rating: ${parsedOmdbMovieInfo.imdbRating} / 10`;
 
     if (parsedOmdbMovieInfo.imdbRating === "N/A") {
         ratingsH2.textContent = "";
