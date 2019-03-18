@@ -22,6 +22,7 @@ div.weather {
 
 .poster-container {
   display: flex;
+  justify-content: center;
   top: 100px;
   width: 100%;
   height: 78vh;
