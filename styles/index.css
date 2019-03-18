@@ -64,11 +64,6 @@ div.weather {
   font-weight: 200;
 }
 
-.info-popup a {
-  text-decoration: none;
-  color: white;
-}
-
 /* movie details div default is hidden */
 
 .info-popup.hidden {
@@ -202,6 +197,12 @@ body.only-info-popup .info-popup{
 
 .info-popup a {
   pointer-events: all;
+  text-decoration: none;
+  color: white;
+}
+
+.info-popup a:hover {
+  text-decoration: underline;
 }
 
 /* icon css */
