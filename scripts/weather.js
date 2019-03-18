@@ -118,7 +118,7 @@ function firstRainyDay(rainyDaysArray) {
     rainyH2.textContent = dayOfWeek;
 
     let moviePresentationH2 = document.createElement('h2');
-    moviePresentationH2.textContent = 'See below for a list of movies playing in your area.';
+    moviePresentationH2.textContent = 'See below for a list of movies playing in your area';
 
     weatherDiv.append(rainyH2);
     weatherDiv.append(moviePresentationH2);
