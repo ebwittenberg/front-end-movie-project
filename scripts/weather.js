@@ -22,6 +22,9 @@ function getWeatherData(zipcode) {
             allRainyDays(weatherObject);
             
         })
+        .catch(function () {
+            location.reload();
+        });
 }
 
 // this function takes the weather object from the fetch chain, and starts displaying info to the user
