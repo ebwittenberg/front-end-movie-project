@@ -108,7 +108,7 @@ function getMovieClassName(event) {
 
     let popUpDiv = document.querySelector('[data-info-pop]');
 
-    console.log(event.target);
+    console.log(event);
     console.log(event.target.classList);
     let underscoreMovieTitle;
     // if user clicks on movie that has no poster
