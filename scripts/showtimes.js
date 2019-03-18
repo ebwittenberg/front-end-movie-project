@@ -303,14 +303,12 @@ function appendMovieDetails(STMovieObject) {
 }
 
 
-function searchMovies(movieList) {
+function searchMovies() {
 
     let searchedMovie = document.querySelector('[data-movie-search]').value.toLowerCase();
-
-    let searchDiv = document.querySelector('[data-movie-search-div]');
+    let exitButton = document.querySelector('[data-stop-search]');
     let underscoreSearchedMovie = searchedMovie.replace(' ', '_');
     let posters = document.querySelectorAll('.poster-frame');
-    console.log(posters);
     let noMatchDiv = document.querySelector('[data-no-match-info]');
     let matchedPosters = [];
     let matchedPoster;
@@ -320,6 +318,7 @@ function searchMovies(movieList) {
     posters.forEach(function(poster) {
         let posterMovieName = poster.childNodes[0].className.toLowerCase();
         if (posterMovieName.includes(underscoreSearchedMovie)) {
+            poster.style.display = 'flex';
             matchedPoster = poster;
             matchedPoster.classList.add('matched-poster');
             matchedPosters.push(matchedPoster);
@@ -327,23 +326,25 @@ function searchMovies(movieList) {
             poster.style.display = 'none';
         }
     })
-    let h2 = document.createElement('h2');
-    h2.textContent = 'X';
-    searchDiv.append(h2);
 
     if (!matchedPoster) {
         noMatchH2.textContent = 'This movie is not playing in your area. Try another?'
         noMatchDiv.append(noMatchH2);
     }
 
+    if (matchedPosters.length === posters.length) {
+        posters.forEach(function(poster) {
+            console.log('all are showing');
+            poster.classList.remove('matched-poster');
+        })
+    }
 
 
-    h2.addEventListener('click', function() {
+    exitButton.addEventListener('click', function() {
 
         let inputField = document.querySelector('[data-movie-search]');
         inputField.value = '';
         noMatchH2.textContent = '';
-        h2.remove();
         if (matchedPoster) {
             matchedPosters.forEach(function(poster) {
                 poster.classList.remove('matched-poster');

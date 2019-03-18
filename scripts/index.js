@@ -2,13 +2,14 @@ function main() {
     // zip code function goes here
     lookForSubmitClick();
 
-    let movieSearchField = document.querySelector('[data-movie-search]');
-    movieSearchField.addEventListener('keypress', function(event){
-        if(event.keyCode === 13) {
-
-            searchMovies();
-
-        }
+    let movieSearchField = document.querySelector('.movie-input');
+    console.log(movieSearchField);
+    movieSearchField.addEventListener('change', function() {
+        searchMovies();
+    })
+    movieSearchField.addEventListener('keyup', function(){
+        console.log('changed');
+        searchMovies();
     })
     resetSearch();
     
