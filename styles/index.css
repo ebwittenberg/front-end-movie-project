@@ -25,16 +25,20 @@ div.weather {
 div.weather h2:nth-child(1) {
   font-size: 24px;
   font-weight: 200;
+  margin-bottom: 0;
 }
 
 div.weather h2:nth-child(2) {
   font-size: 34px;
   font-weight: 400;
+  margin-top: 0;
 }
 
 div.weather h2:nth-child(3) {
   font-size: 18px;
   font-weight: 200;
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
 
 .poster-container {
@@ -79,6 +83,29 @@ div.weather h2:nth-child(3) {
 }
 .info-popup h2{
   font-weight: 200;
+}
+
+.info-popup h2:nth-child(2) {
+  font-weight: 400;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.info-popup h2:nth-child(3) {
+  font-size: 18px;
+  margin-top: 5px;
+}
+.info-popup h2:nth-child(4) {
+  font-size: 20px;
+  font-weight: 400;
+}
+.info-popup h2:nth-child(5) {
+  font-size: 18px;
+}
+.info-popup h2:nth-child(n+6) {
+  margin-bottom: 5px;
+}
+.info-popup p {
+  margin: 2px;
 }
 
 /* movie details div default is hidden */
