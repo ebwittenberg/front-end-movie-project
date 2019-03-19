@@ -10,7 +10,7 @@ function fetchShowtimeData(date) {
 
     const showtimeJson = '../json/atlMovies.json'
 
-    fetch(showtimeJson)
+    fetch(showtimeURL)
         .then(function(response) {
             return response.json()
         })
@@ -65,6 +65,10 @@ function fetchOmdbData(movieTitle) {
 
 // draws posters to the screen
 function drawMoviePoster(STmovieTitle, imageUrl, omdbMovieData) {
+
+    let movieSearchDiv = document.querySelector('[data-movie-search-div]');
+    movieSearchDiv.classList.remove('hidden');
+
     let posterContainer = document.querySelector('[data-postercontainer]');
     let posterFrame = document.createElement('div');
     // gives each poster frame a class so we can style it
@@ -299,9 +303,10 @@ function appendMovieDetails(STMovieObject) {
 // movie search functionality
 function searchMovies() {
 
+    let movieSearchDiv = document.querySelector('[data-movie-search-div]');
+
     // grabs user entered text in the search bar
     let searchedMovie = document.querySelector('[data-movie-search]').value.toLowerCase();
-    let exitButton = document.querySelector('[data-stop-search]');
     let underscoreSearchedMovie = searchedMovie.replace(' ', '_');
     let posters = document.querySelectorAll('.poster-frame');
     let matchedPosters = [];
