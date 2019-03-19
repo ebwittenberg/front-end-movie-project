@@ -87,7 +87,7 @@ function drawMoviePoster(STmovieTitle, imageUrl, omdbMovieData) {
 
         backupPosterText.classList.add(underscoreMovieTitle);
 
-        posterFrame.addEventListener('click', function() {
+        posterFrame.addEventListener('click', function(event) {
             getMovieClassName(event);
         })
 
@@ -101,7 +101,7 @@ function drawMoviePoster(STmovieTitle, imageUrl, omdbMovieData) {
         img.classList.add(underscoreMovieTitle);
         
         // add event listener to each poster frame that calls a function
-        img.addEventListener('click', function() {
+        img.addEventListener('click', function(event) {
             getMovieClassName(event);
         })
         posterContainer.classList.remove('hidden');
