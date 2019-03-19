@@ -76,7 +76,6 @@ div.weather h2:nth-child(3) {
   font-family: 'Helvetica Neue', helvetica, sans-serif;
   font-weight: 200;
   padding: 10px;
-  border-radius: 5px;
   border: 1px solid rgba(255, 255, 255, .3);
   box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
 
@@ -262,6 +261,10 @@ body.only-info-popup .info-popup{
 
 .info-popup a:hover {
   text-decoration: underline;
+}
+
+.movie-search.hidden {
+  display: none;
 }
 
 
@@ -467,7 +470,7 @@ $color-accent: white; */
   }
 
   div.weather {
-    width: 50%;
+    width: 100%;
     float: right;
     font-size: 13px;
     -webkit-transition: all .5s;
@@ -485,6 +488,14 @@ $color-accent: white; */
 
   .main {
     margin-top: 65px;
+    position: static;
+    transform: none;
+    text-align: center;
+    overflow: visible;
+  }
+
+  .no-rain-container .netflix-link {
+    font-size: 35px;
   }
 
 }
