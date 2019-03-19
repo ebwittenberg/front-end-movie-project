@@ -454,8 +454,9 @@ $color-accent: white; */
     -moz-transform:scale(0.4);
     -ms-transform:scale(0.4);
     transform: scale(0.4);
-    margin: 0 auto;
-    width: 40px;
+    /* margin: 0 auto; */
+    width: 100%;
+    margin: 0;
 
     -webkit-transition: all .5s;
     -moz-transition: all .5s;
