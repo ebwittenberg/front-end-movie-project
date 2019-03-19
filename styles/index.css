@@ -451,8 +451,6 @@ $color-accent: white; */
     -moz-transform:scale(0.4);
     -ms-transform:scale(0.4);
     transform: scale(0.4);
-    /* margin-left: 0;
-    margin-top: 2px; */
     margin: 0 auto;
     width: 40px;
 
@@ -465,9 +463,6 @@ $color-accent: white; */
     left: 0;
     right: 0;
     margin: 0 auto;
-    /* -webkit-transition: all 1s;
-    -moz-transition: all 1s;
-    transition: all 1s; */
     
   }
 
