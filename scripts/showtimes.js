@@ -166,7 +166,7 @@ function getMovieClassName(event) {
         }
     })
 }
-
+// Filters sorted array of theaters and returns array of unique theater names
 function buildUniqueTheaterArray(showtimes) {
     let uniqueTheaterArray = [];
     let prevTheater;
@@ -286,7 +286,7 @@ function appendMovieDetails(STMovieObject) {
     // draws movie MCAA rating into pop up div
     let MCAARatingH2 = document.createElement('h2')
     MCAARatingH2.textContent = parsedOmdbMovieInfo.Rated
- 
+
     movieDetailsDiv.append(MCAARatingH2);
 
 
