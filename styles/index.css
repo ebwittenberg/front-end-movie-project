@@ -326,7 +326,7 @@ $color-accent: white; */
     /* overflow: hidden; */
     position: fixed; /* Set the navbar to fixed position */
     top: 0; /* Position the navbar at the top of the page */
-    width: 20%; /* Full width */
+    width: 20%; /* set width to 20% */
     
 }
 
@@ -451,10 +451,10 @@ $color-accent: white; */
 
   .site-logo {
     /* display: block; */
-    -webkit-transform:scale(0.4);
-    -moz-transform:scale(0.4);
-    -ms-transform:scale(0.4);
-    transform: scale(0.4);
+    -webkit-transform:scale(0.5);
+    -moz-transform:scale(0.5);
+    -ms-transform:scale(0.5);
+    transform: scale(0.5);
     /* margin: 0 auto; */
     width: 100%;
     margin: 0;
@@ -469,6 +469,7 @@ $color-accent: white; */
     right: 0;
     margin: 0 auto;
     position: static;
+    height: 70px;
     
   }
 
