@@ -327,10 +327,10 @@ function searchMovies() {
         }
     })
 
-    if (!matchedPoster) {
-        noMatchH2.textContent = 'This movie is not playing in your area. Try another?'
-        noMatchDiv.append(noMatchH2);
-    }
+    // if (!matchedPoster) {
+    //     noMatchH2.textContent = 'This movie is not playing in your area. Try another?'
+    //     noMatchDiv.append(noMatchH2);
+    // }
 
     if (matchedPosters.length === posters.length) {
         posters.forEach(function(poster) {
