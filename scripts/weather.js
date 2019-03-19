@@ -18,7 +18,6 @@ function getWeatherData(zipcode) {
         })
         // take the second promise and call function that appends the city info, and function that will find rainy days
         .then(function(weatherObject) {
-            console.log(weatherObject);
             allRainyDays(weatherObject);
             
         })
@@ -38,7 +37,6 @@ function createCityInfo(weatherObject) {
     // assigns text content
     cityH2.textContent = `Rain is expected in ${weatherObject.city.name} this `;
    
-    console.log(weatherObject.list[0].main);
     // puts the city h2 info into the weatherDiv
     weatherDiv.append(cityH2);
 
@@ -48,7 +46,6 @@ function createCityInfo(weatherObject) {
 function allRainyDays(weatherObject) {
     // array of data for each 3 hour period for 5 days
     let daysArray = weatherObject.list
-    console.log(daysArray);
     // initialize empty array of rainy days
     let rainyDays = [];
 
@@ -63,7 +60,6 @@ function allRainyDays(weatherObject) {
         
         
     })
-    console.log(rainyDays);
     //this if statement filters rediects code for 'no rain' events
     //if rainyDays array has value then city will have rain so call next functions
     if (rainyDays.length !== 0) {
@@ -73,7 +69,7 @@ function allRainyDays(weatherObject) {
         //grab target to print 'no rain statement/link' creates pointer to weather div
         mainDiv = document.querySelector('[data-main]');
         let noRainDiv = document.createElement('div');
-        noRainDiv.setAttribute('data-no-rain', '')
+        let movieSearchDiv = document.querySelector('[data-movie-search-div]');        noRainDiv.setAttribute('data-no-rain', '')
         noRainDiv.classList.add('no-rain-container')
         mainDiv.append(noRainDiv)
         noRainContainer = document.querySelector('[data-no-rain]')
@@ -91,6 +87,8 @@ function allRainyDays(weatherObject) {
         
         // assigns text content
         cityH2.textContent = `Awesome!\nNo rain forecast for ${weatherObject.city.name}!\nWhy not enjoy the`;
+        movieSearchDiv.classList.add('hidden');
+
     
         // puts the city h2 info into the weatherDiv
         noRainDiv.append(cityH2);
@@ -122,7 +120,6 @@ function firstRainyDay(rainyDaysArray) {
 
     weatherDiv.append(rainyH2);
     weatherDiv.append(moviePresentationH2);
-    console.log(firstRainDay);
     fetchShowtimeData(firstRainDay);
     
 }
