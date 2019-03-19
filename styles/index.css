@@ -313,6 +313,7 @@ div.no-rain-container {
 
 .no-rain-container .netflix-link:hover {
   text-decoration: underline;
+  color: red;
 }
 
 /* icon css */
