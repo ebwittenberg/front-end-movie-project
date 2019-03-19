@@ -312,10 +312,11 @@ function searchMovies() {
     let noMatchDiv = document.querySelector('[data-no-match-info]');
     let matchedPosters = [];
     let matchedPoster;
-    let noMatchH2 = document.createElement('h2');
-    noMatchH2.classList.add('no-match');
+    // let noMatchH2 = document.createElement('h2');
+    let noMatchH2 = document.querySelector('[data-no-match-h2');
 
     posters.forEach(function(poster) {
+        noMatchH2.textContent = '';
         let posterMovieName = poster.childNodes[0].className.toLowerCase();
         if (posterMovieName.includes(underscoreSearchedMovie)) {
             poster.style.display = 'flex';
@@ -327,10 +328,11 @@ function searchMovies() {
         }
     })
 
-    // if (!matchedPoster) {
-    //     noMatchH2.textContent = 'This movie is not playing in your area. Try another?'
-    //     noMatchDiv.append(noMatchH2);
-    // }
+    if (!matchedPoster) {
+        console.log(matchedPosters)
+        noMatchH2.textContent = 'This movie is not playing in your area. Try another?'
+        // noMatchDiv.append(noMatchH2);
+    }
 
     if (matchedPosters.length === posters.length) {
         posters.forEach(function(poster) {
