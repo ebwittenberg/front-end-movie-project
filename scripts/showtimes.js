@@ -1,5 +1,5 @@
+// fetches showtimes data given the date it is raining
 function fetchShowtimeData(date) {
-    console.log(date);
     let dateArray = date.split(' ');
     const dateOnly = dateArray[0];
     
@@ -16,7 +16,6 @@ function fetchShowtimeData(date) {
         })
         .then(function(showtimeData) {
             // this is an array!
-            console.log(showtimeData);
 
             // puts all the showtimeData info in local storage for later use
             storeShowTimeData(showtimeData)
@@ -34,6 +33,7 @@ function fetchShowtimeData(date) {
         })
 }
 
+// stores showtime data in local storage
 function storeShowTimeData(showtimeDatas) {
     const jsonStringShowTimeData = JSON.stringify(showtimeDatas)
     console.log(`Saving ${Object.keys(showtimeDatas).length} movies to local storage`)
@@ -43,7 +43,7 @@ function storeShowTimeData(showtimeDatas) {
 
 }
 
-
+// fetches OMDB data for each movie
 function fetchOmdbData(movieTitle) {
     const omdbUrl = `http://www.omdbapi.com/?apikey=48ba5f31&t=${movieTitle}`
     let title = movieTitle;
@@ -63,6 +63,7 @@ function fetchOmdbData(movieTitle) {
     })
 }
 
+// draws posters to the screen
 function drawMoviePoster(STmovieTitle, imageUrl, omdbMovieData) {
     let posterContainer = document.querySelector('[data-postercontainer]');
     let posterFrame = document.createElement('div');
@@ -106,13 +107,10 @@ function drawMoviePoster(STmovieTitle, imageUrl, omdbMovieData) {
 
 }
 
-// add movie details when poster is clicked on
+// associate poster with movie name
 function getMovieClassName(event) {
 
     let popUpDiv = document.querySelector('[data-info-pop]');
-
-    console.log(event);
-    console.log(event.target.classList);
     let underscoreMovieTitle;
     // if user clicks on movie that has no poster
     if (event.target.classList[1]) {
@@ -201,13 +199,11 @@ function appendTheaterDetails(STMovieObject, uniqueTheatersArray) {
 
         body.addEventListener('click', function(event) {
             if (event.target === body || event.target === posterContainer || event.target === nav || event.target === logo || event.target === h2) {
-                console.log('clicked off details div');
                 movieDetailsDiv.classList.add('hidden');
                 mainDiv.classList.remove('blurry');
                 logo.classList.remove('blurry');
                 body.classList.remove('only-info-popup');
                 movieDetailsDiv.textContent = '';
-                console.log(movieDetailsDiv.childNodes);
             }
         })
 
@@ -242,7 +238,6 @@ function appendTheaterDetails(STMovieObject, uniqueTheatersArray) {
                 let armyTimeString = armyTime.toString();
                 // console.log(armyTimeString)
                 let splitTimeArray = armyTimeString.split(':');
-                console.log(splitTimeArray);
                 let hours = Number(splitTimeArray[0]);
                 let minutes = Number(splitTimeArray[1]);
                 let convertedTime;
@@ -257,7 +252,6 @@ function appendTheaterDetails(STMovieObject, uniqueTheatersArray) {
                 
                 convertedTime += (minutes < 10) ? ":0" + minutes : ":" + minutes;  // get minutes
                 convertedTime += (hours >= 12) ? "pm" : "am";  // get AM/PM
-                console.log(convertedTime)
 
                 // puts actual show time as text content
                 showtimePara.textContent = convertedTime
@@ -302,9 +296,10 @@ function appendMovieDetails(STMovieObject) {
 
 }
 
-
+// movie search functionality
 function searchMovies() {
 
+    // grabs user entered text in the search bar
     let searchedMovie = document.querySelector('[data-movie-search]').value.toLowerCase();
     let exitButton = document.querySelector('[data-stop-search]');
     let underscoreSearchedMovie = searchedMovie.replace(' ', '_');
@@ -313,58 +308,43 @@ function searchMovies() {
     let matchedPoster;
     let noMatchH2 = document.querySelector('[data-no-match-h2');
 
+    // loop through all posters on the page
     posters.forEach(function(poster) {
         noMatchH2.textContent = '';
+        // grab movie name associated with that poster
         let posterMovieName = poster.childNodes[0].className.toLowerCase();
+        // if any part of that name matches the user entered search
         if (posterMovieName.includes(underscoreSearchedMovie)) {
             poster.style.display = 'flex';
             matchedPoster = poster;
+            // give poster a new class for resizing
             matchedPoster.classList.add('matched-poster');
             matchedPosters.push(matchedPoster);
         } else if (underscoreSearchedMovie !== posterMovieName) {
+            // if the poster name doesn't match the search, hide the poster
             poster.style.display = 'none';
         }
     })
-
+    // if there are no matched posters (no movies match search)
     if (!matchedPoster) {
-        console.log(matchedPosters)
         noMatchH2.textContent = 'This movie is not playing in your area. Try another?'
     }
 
+    // if user backspaces enough where all posters are showing again, remove any special styling to go back to default view
     if (matchedPosters.length === posters.length) {
+        console.log('all are showing');
         posters.forEach(function(poster) {
-            console.log('all are showing');
             poster.classList.remove('matched-poster');
         })
     }
 
-
-    exitButton.addEventListener('click', function() {
-
-        let inputField = document.querySelector('[data-movie-search]');
-        inputField.value = '';
-        noMatchH2.textContent = '';
-        if (matchedPoster) {
-            matchedPosters.forEach(function(poster) {
-                poster.classList.remove('matched-poster');
-            })
-        }
-        showAllMovies(posters);
-    })
-
 }
 
-function showAllMovies(posters) {
-    posters.forEach(function(poster) {
-        poster.style.display = 'block';
-    })
-}
-
-// if search again is clicked, go back to search bar
+// if movie cloud logo is clicked, go back to search bar
 function resetSearch() {
     const searchAgain = document.querySelector('[data-search-again]');
     searchAgain.addEventListener('click', function() {
-        console.log('reset started');
+        // reloads page
         location.reload();
     });
 }
