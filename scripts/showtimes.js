@@ -311,7 +311,7 @@ function searchMovies() {
     let posters = document.querySelectorAll('.poster-frame');
     let matchedPosters = [];
     let matchedPoster;
-    let noMatchH2 = document.querySelector('[data-no-match-h2');
+    let noMatchH2 = document.querySelector('[data-no-match-h2]');
 
     // loop through all posters on the page
     posters.forEach(function(poster) {
