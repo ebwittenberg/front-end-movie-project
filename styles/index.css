@@ -142,7 +142,7 @@ div.weather h2:nth-child(3) {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgb(30, 30, 30, .8);
+  background-color: rgba(30, 30, 30, .8);
   margin: .5em;
   height: auto;
   position: relative;
@@ -218,7 +218,7 @@ input:focus {
   margin-top: 30px;
   margin-left: 30px;
   filter: brightness(50%);
-  
+
 }
 
 .site-logo:hover {
@@ -319,11 +319,11 @@ $bg-color-light: rgba(255, 255, 255, 0.2);
 $bg-color-lighter: rgba(255, 1255, 255, 0.1);
 $color-accent: white; */
 .nav-bar {
-    overflow: hidden;
+    /* overflow: hidden; */
     position: fixed; /* Set the navbar to fixed position */
     top: 0; /* Position the navbar at the top of the page */
     width: 20%; /* Full width */
-    float: left;
+    
 }
 
 .site-logo.blurry {
@@ -416,34 +416,80 @@ $color-accent: white; */
 @media (max-width: 740px) {
   .poster-container {
     justify-content: center;
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    transition: all .5s;  
   }
 
   .poster-frame {
     width: 45%;
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    transition: all .5s;
   }
+  
 }
 
-@media (max-width: 500px) {
+@media (max-width: 630px) {
   .poster-frame {
     width: 100%;
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    transition: all .5s;
   }
 
   .info-popup {
     width: 75%;
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    transition: all .5s;
   }
 
   .site-logo {
-    display: block;
+    /* display: block; */
+    -webkit-transform:scale(0.4);
+    -moz-transform:scale(0.4);
+    -ms-transform:scale(0.4);
+    transform: scale(0.4);
+    /* margin-left: 0;
+    margin-top: 2px; */
+    margin: 0 auto;
+    width: 40px;
+
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    transition: all .5s;
   }
+  
+  .nav-bar {
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    /* -webkit-transition: all 1s;
+    -moz-transition: all 1s;
+    transition: all 1s; */
+    
+  }
+
   div.weather {
     width: 50%;
     float: right;
     font-size: 13px;
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    transition: all .5s;
   }
 
   div.poster-container {
     margin-top: 50px;
     height: 375px;
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    transition: all .5s;
+  }
+
+  .main {
+    margin-top: 65px;
   }
 
 }
