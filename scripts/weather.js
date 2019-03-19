@@ -69,7 +69,8 @@ function allRainyDays(weatherObject) {
         //grab target to print 'no rain statement/link' creates pointer to weather div
         mainDiv = document.querySelector('[data-main]');
         let noRainDiv = document.createElement('div');
-        let movieSearchDiv = document.querySelector('[data-movie-search-div]');        noRainDiv.setAttribute('data-no-rain', '')
+        let movieSearchDiv = document.querySelector('[data-movie-search-div]');        
+        noRainDiv.setAttribute('data-no-rain', '')
         noRainDiv.classList.add('no-rain-container')
         mainDiv.append(noRainDiv)
         noRainContainer = document.querySelector('[data-no-rain]')

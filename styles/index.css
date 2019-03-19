@@ -482,11 +482,12 @@ $color-accent: white; */
 
   div.poster-container {
     margin-top: 50px;
-    height: 375px;
+    /* height: 375px; */
     -webkit-transition: all .5s;
     -moz-transition: all .5s;
     transition: all .5s;
     overflow: visible;
+    height: auto;
   }
 
   .main {
@@ -499,6 +500,10 @@ $color-accent: white; */
 
   .no-rain-container .netflix-link {
     font-size: 35px;
+  }
+
+  body {
+    height: auto;
   }
 
 }
