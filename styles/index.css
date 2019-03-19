@@ -466,6 +466,7 @@ $color-accent: white; */
     left: 0;
     right: 0;
     margin: 0 auto;
+    position: static;
     
   }
 
@@ -484,10 +485,11 @@ $color-accent: white; */
     -webkit-transition: all .5s;
     -moz-transition: all .5s;
     transition: all .5s;
+    overflow: visible;
   }
 
   .main {
-    margin-top: 65px;
+    width: 100%;
     position: static;
     transform: none;
     text-align: center;
