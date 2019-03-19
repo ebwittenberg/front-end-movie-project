@@ -143,6 +143,7 @@ function getMovieClassName(event) {
     let storedSTMovieData = localStorage.getItem('ST-movie-data');
     let parsedSTMovieData = JSON.parse(storedSTMovieData);
     parsedSTMovieData.forEach(function (STMovieObject) {
+        // if the title stored in local storage matches the user entered title
         if (STMovieObject.title === STmovieTitle) {
             let popUpDiv = document.querySelector('[data-info-pop]');
             let titleh2 = document.createElement('h2');
