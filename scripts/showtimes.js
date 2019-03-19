@@ -309,10 +309,8 @@ function searchMovies() {
     let exitButton = document.querySelector('[data-stop-search]');
     let underscoreSearchedMovie = searchedMovie.replace(' ', '_');
     let posters = document.querySelectorAll('.poster-frame');
-    let noMatchDiv = document.querySelector('[data-no-match-info]');
     let matchedPosters = [];
     let matchedPoster;
-    // let noMatchH2 = document.createElement('h2');
     let noMatchH2 = document.querySelector('[data-no-match-h2');
 
     posters.forEach(function(poster) {
@@ -331,7 +329,6 @@ function searchMovies() {
     if (!matchedPoster) {
         console.log(matchedPosters)
         noMatchH2.textContent = 'This movie is not playing in your area. Try another?'
-        // noMatchDiv.append(noMatchH2);
     }
 
     if (matchedPosters.length === posters.length) {

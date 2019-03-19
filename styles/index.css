@@ -264,6 +264,10 @@ body.only-info-popup .info-popup{
   text-decoration: underline;
 }
 
+.movie-search.hidden {
+  display: none;
+}
+
 
 .movie-search {
   display: flex;
