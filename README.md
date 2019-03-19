@@ -32,6 +32,24 @@ display showing title, plot, MMCA Rating, IMDB Score and theaters and showtimes 
 i.e. NetFlix
 * MovieCloud is mobile first and compatible on multiple browsers (Chrome, Safari, Firefox)
 
+#### Screenshots
+
+## Home Page with zip code search field
+![alt-text](https://raw.githubusercontent.com/ebwittenberg/front-end-movie-project/master/images/zip%20code.png)
+
+## Results page
+![alt-text](https://raw.githubusercontent.com/ebwittenberg/front-end-movie-project/master/images/main%20page.png)
+
+## Pop up with movie details
+![alt-text](https://raw.githubusercontent.com/ebwittenberg/front-end-movie-project/master/images/Screen%20Shot%202019-03-19%20at%2012.32.07%20PM.png)
+
+## Movie search functionality
+![alt-text](https://raw.githubusercontent.com/ebwittenberg/front-end-movie-project/master/images/search-functionality.png)
+
+## Mobile views
+![alt-text](https://raw.githubusercontent.com/ebwittenberg/front-end-movie-project/master/images/iPhone%20view.png)
+![alt-text](https://raw.githubusercontent.com/ebwittenberg/front-end-movie-project/master/images/iPad%20view.png)
+
 #### Technologies
 - JavaScript
 - HTML
