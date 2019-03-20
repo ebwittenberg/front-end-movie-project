@@ -3,8 +3,11 @@ function fetchShowtimeData(date) {
     let dateArray = date.split(' ');
     const dateOnly = dateArray[0];
     
+    let key1 = 'xguxvke7xybd3fsscb7h446v';
+    let key2 = '36zekhh8ta2kuj2cujbj55rd';
+    let key3 = '4g7bvs4v2vy929mbgrqynbkv';
 
-    let showtimeURL = `http://data.tmsapi.com/v1.1/movies/showings?startDate=${dateOnly}&zip=${zip}&api_key=xguxvke7xybd3fsscb7h446v`;
+    let showtimeURL = `http://data.tmsapi.com/v1.1/movies/showings?startDate=${dateOnly}&zip=${zip}&api_key=${key2}`;
     // showtime URL is going to give us all the movies that are playing in the zip code radius
     // returns a promise
 
@@ -13,6 +16,10 @@ function fetchShowtimeData(date) {
     fetch(showtimeURL)
         .then(function(response) {
             return response.json()
+        })
+        // if no movies playing within 5 miles of zipcode, reload page.
+        .catch(function () {
+            location.reload();
         })
         .then(function(showtimeData) {
             // this is an array!
@@ -308,7 +315,7 @@ function searchMovies() {
 
     // grabs user entered text in the search bar
     let searchedMovie = document.querySelector('[data-movie-search]').value.toLowerCase();
-    let underscoreSearchedMovie = searchedMovie.replace(' ', '_');
+    let underscoreSearchedMovie = searchedMovie.replace(/ /g, "_");
     let posters = document.querySelectorAll('.poster-frame');
     let matchedPosters = [];
     let matchedPoster;
