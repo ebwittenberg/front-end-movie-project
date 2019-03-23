@@ -31,13 +31,13 @@ div.weather h2:nth-child(1) {
 div.weather h2:nth-child(2) {
   font-size: 34px;
   font-weight: 400;
-  margin-top: 0;
+  margin: 0;
 }
 
 div.weather h2:nth-child(3) {
   font-size: 18px;
   font-weight: 200;
-  margin-bottom: 0;
+  margin: 0;
   padding-bottom: 0;
 }
 
@@ -82,6 +82,9 @@ div.weather h2:nth-child(3) {
 }
 .info-popup h2{
   font-weight: 200;
+}
+.body {
+  position: fixed;
 }
 
 .info-popup h2:nth-child(2) {
@@ -132,6 +135,10 @@ div.weather h2:nth-child(3) {
 /* when poster is clicked on, make everything else blurry */
 .main.blurry {
   filter: blur(5px);
+}
+
+.main.hidden {
+  display: none;
 }
 
 .poster-frame {
@@ -245,11 +252,13 @@ input:focus {
 }
 
 /* turns off background when viewing movie data popup */
-body.only-info-popup * {
+body.only-info-popup *{
   pointer-events: none;
 }
 
-body.only-info-popup .info-popup{
+
+body.only-info-popup
+.info-popup{
   pointer-events: all;
 }
 
@@ -417,7 +426,7 @@ $color-accent: white; */
 
 /* media queries */
 
-@media (max-width: 740px) {
+/* @media (max-width: 740px) {
   .poster-container {
     justify-content: center;
     -webkit-transition: all .5s;
@@ -432,11 +441,12 @@ $color-accent: white; */
     transition: all .5s;
   }
   
-}
+} */
 
 @media (max-width: 630px) {
   .poster-frame {
-    width: 100%;
+    width: 80%;
+    /* height: 100%; */
     -webkit-transition: all .5s;
     -moz-transition: all .5s;
     transition: all .5s;
@@ -472,6 +482,9 @@ $color-accent: white; */
     height: 70px;
     
   }
+  .zip-code-search {
+    height: 80%;
+  }
 
   div.weather {
     width: 100%;
@@ -482,14 +495,29 @@ $color-accent: white; */
     transition: all .5s;
   }
 
-  div.poster-container {
-    margin-top: 50px;
+  /* div.poster-container {
+    margin-top: 50px; */
     /* height: 375px; */
-    -webkit-transition: all .5s;
+    /* -webkit-transition: all .5s;
     -moz-transition: all .5s;
     transition: all .5s;
     overflow: visible;
     height: auto;
+  } */
+
+  .movie-search {
+    height: 50px;
+  }
+
+  div.poster-container {
+    display: flex;
+    justify-content: center;
+    top: 100px;
+    width: 100%;
+    height: 60%;
+    flex-wrap: wrap;
+    overflow: auto;
+    margin-top: 10px;
   }
 
   .main {
@@ -505,6 +533,7 @@ $color-accent: white; */
   }
 
   body {
-    height: auto;
+    height: 100%;
+    position: fixed;
   }
 }

@@ -17,6 +17,9 @@ function getZipCode() {
 
     const zipCodeDiv = document.querySelector('.zip-code-search');
     zipCodeDiv.classList.add('hidden');
+
+    let main = document.querySelector("[data-main]");
+    main.classList.remove('hidden');
 }
 
 
