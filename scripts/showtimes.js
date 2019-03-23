@@ -7,7 +7,7 @@ function fetchShowtimeData(date) {
     let key2 = '36zekhh8ta2kuj2cujbj55rd';
     let key3 = '4g7bvs4v2vy929mbgrqynbkv';
 
-    let showtimeURL = `http://data.tmsapi.com/v1.1/movies/showings?startDate=${dateOnly}&zip=${zip}&api_key=${key2}`;
+    let showtimeURL = `http://data.tmsapi.com/v1.1/movies/showings?startDate=${dateOnly}&zip=${zip}&api_key=${key3}`;
     // showtime URL is going to give us all the movies that are playing in the zip code radius
     // returns a promise
 
@@ -222,7 +222,7 @@ function appendTheaterDetails(STMovieObject, uniqueTheatersArray) {
             body.classList.remove('only-info-popup');
             movieDetailsDiv.textContent = '';
         })
-        
+
         body.addEventListener('click', function(event) {
             if (event.target === body || event.target === posterContainer || event.target === nav || event.target === logo || event.target === h2) {
                 movieDetailsDiv.classList.add('hidden');
