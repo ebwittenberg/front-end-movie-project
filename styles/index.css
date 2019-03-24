@@ -51,6 +51,7 @@ div.weather h2:nth-child(3) {
   flex-wrap: wrap;
   overflow: auto;
   margin-top: 30px;
+  -webkit-overflow-scrolling: touch;
 }
 
 .poster-container.hidden {
@@ -69,6 +70,7 @@ div.weather h2:nth-child(3) {
   position: fixed;
   top: 50%;
   left: 50%;
+  -webkit-overflow-scrolling: touch;
   /* bring your own prefixes */
   transform: translate(-50%, -50%);
 
