@@ -17,6 +17,7 @@ div.weather {
   text-align: center;
   font-family: 'Helvetica Neue', helvetica, sans-serif;
   font-weight: 200;
+  height: auto;
   /* font-size: 50px;
   font-weight: 400; */
 
@@ -31,13 +32,13 @@ div.weather h2:nth-child(1) {
 div.weather h2:nth-child(2) {
   font-size: 34px;
   font-weight: 400;
-  margin-top: 0;
+  margin: 0;
 }
 
 div.weather h2:nth-child(3) {
   font-size: 18px;
   font-weight: 200;
-  margin-bottom: 0;
+  margin: 0;
   padding-bottom: 0;
 }
 
@@ -50,6 +51,7 @@ div.weather h2:nth-child(3) {
   flex-wrap: wrap;
   overflow: auto;
   margin-top: 30px;
+  -webkit-overflow-scrolling: touch;
 }
 
 .poster-container.hidden {
@@ -68,6 +70,7 @@ div.weather h2:nth-child(3) {
   position: fixed;
   top: 50%;
   left: 50%;
+  -webkit-overflow-scrolling: touch;
   /* bring your own prefixes */
   transform: translate(-50%, -50%);
 
@@ -82,6 +85,9 @@ div.weather h2:nth-child(3) {
 }
 .info-popup h2{
   font-weight: 200;
+}
+.body {
+  position: fixed;
 }
 
 .info-popup h2:nth-child(2) {
@@ -126,12 +132,16 @@ div.weather h2:nth-child(3) {
   position: fixed;
   left: 50%;
   transform: translate(-50%, 0);
-  height: 100%
+  height: 100%;
 }
 
 /* when poster is clicked on, make everything else blurry */
 .main.blurry {
   filter: blur(5px);
+}
+
+.main.hidden {
+  display: none;
 }
 
 .poster-frame {
@@ -245,11 +255,13 @@ input:focus {
 }
 
 /* turns off background when viewing movie data popup */
-body.only-info-popup * {
+body.only-info-popup *{
   pointer-events: none;
 }
 
-body.only-info-popup .info-popup{
+
+body.only-info-popup
+.info-popup{
   pointer-events: all;
 }
 
@@ -277,6 +289,7 @@ body.only-info-popup .info-popup{
   margin-right: 5px;
   z-index: 4;
   width: 100%;
+  height: auto;
   display: flex;
   justify-content: center;
   /* margin: 0 auto; */
@@ -433,18 +446,19 @@ $color-accent: white; */
     transition: all .5s;  
   }
 
-  .poster-frame {
+.poster-frame {
     width: 45%;
     -webkit-transition: all .5s;
     -moz-transition: all .5s;
-    transition: all .5s;
+    transition: all .5s; 
   }
   
 }
 
 @media (max-width: 630px) {
   .poster-frame {
-    width: 100%;
+    width: 80%;
+    /* height: 100%; */
     -webkit-transition: all .5s;
     -moz-transition: all .5s;
     transition: all .5s;
@@ -480,28 +494,77 @@ $color-accent: white; */
     height: 70px;
     
   }
+  .zip-code-search {
+    height: 80%;
+  }
 
   div.weather {
     width: 100%;
+    height: auto;
     float: right;
     font-size: 13px;
     -webkit-transition: all .5s;
     -moz-transition: all .5s;
     transition: all .5s;
+    line-height: 1.5em;
   }
 
-  div.poster-container {
-    margin-top: 50px;
+  /* div.poster-container {
+    margin-top: 50px; */
     /* height: 375px; */
-    -webkit-transition: all .5s;
+    /* -webkit-transition: all .5s;
     -moz-transition: all .5s;
     transition: all .5s;
     overflow: visible;
     height: auto;
+  } */
+
+  div.weather h2:nth-child(1) {
+    /* line-height: 70% */
+    -webkit-transform:scale(0.7);
+    -moz-transform:scale(0.7);
+    -ms-transform:scale(0.7);
+    transform: scale(0.7);
+  }
+  
+  div.weather h2:nth-child(2) {
+    -webkit-transform:scale(0.5);
+    -moz-transform:scale(0.5);
+    -ms-transform:scale(0.5);
+    transform: scale(0.5);
+  }
+  
+  div.weather h2:nth-child(3) {
+    -webkit-transform:scale(0.8);
+    -moz-transform:scale(0.8);
+    -ms-transform:scale(0.8);
+    transform: scale(0.8);
+  }
+
+  .movie-search {
+    height: auto;
+  }
+
+  .movie-input {
+    padding-top: 0;
+    padding-bottom: 3px;
+    height: 30px;
+  }
+
+  div.poster-container {
+    display: flex;
+    justify-content: center;
+    /* top: 100px; */
+    width: 100%;
+    height: 70%;
+    flex-wrap: wrap;
+    overflow: auto;
+    margin-top: 10px;
   }
 
   .main {
     width: 100%;
+    height: 100vmax;
     position: static;
     transform: none;
     text-align: center;
@@ -513,6 +576,7 @@ $color-accent: white; */
   }
 
   body {
-    height: auto;
+    height: 100%;
+    position: fixed;
   }
 }
