@@ -253,6 +253,10 @@ body.only-info-popup .info-popup{
   pointer-events: all;
 }
 
+.info-popup i {
+  pointer-events: all;
+}
+
 .info-popup a {
   pointer-events: all;
   text-decoration: none;
@@ -314,6 +318,10 @@ div.no-rain-container {
 .no-rain-container .netflix-link:hover {
   text-decoration: underline;
   color: red;
+}
+
+.fa-times-circle {
+  margin-bottom: 10px;
 }
 
 /* icon css */

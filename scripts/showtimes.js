@@ -155,6 +155,11 @@ function getMovieClassName(event) {
             let popUpDiv = document.querySelector('[data-info-pop]');
             let titleh2 = document.createElement('h2');
             titleh2.textContent = STMovieObject.title;
+            exitButton = document.createElement('i');
+            exitButton.classList.add('far');
+            exitButton.classList.add('fa-times-circle');
+            exitButton.classList.add('fa-2x');
+            popUpDiv.append(exitButton);
             popUpDiv.append(titleh2);
             
 
@@ -198,7 +203,7 @@ function appendTheaterDetails(STMovieObject, uniqueTheatersArray) {
         let body = document.querySelector('body');
         let nav = document.querySelector('.nav-bar');
         let h2 = document.querySelectorAll('h2');
-        let logo = document.querySelector('.site-logo')
+        let logo = document.querySelector('.site-logo');
 
         let posterContainer = document.querySelector('[data-postercontainer]');
 
@@ -209,6 +214,15 @@ function appendTheaterDetails(STMovieObject, uniqueTheatersArray) {
         logo.classList.add('blurry');
         body.classList.add('only-info-popup')
 
+        exitButton.addEventListener('click', function() {
+            console.log('button clicked');
+            movieDetailsDiv.classList.add('hidden');
+            mainDiv.classList.remove('blurry');
+            logo.classList.remove('blurry');
+            body.classList.remove('only-info-popup');
+            movieDetailsDiv.textContent = '';
+        })
+        
         body.addEventListener('click', function(event) {
             if (event.target === body || event.target === posterContainer || event.target === nav || event.target === logo || event.target === h2) {
                 movieDetailsDiv.classList.add('hidden');
@@ -218,6 +232,7 @@ function appendTheaterDetails(STMovieObject, uniqueTheatersArray) {
                 movieDetailsDiv.textContent = '';
             }
         })
+
 
         let theaterNameH2 = document.createElement('h2');
         const link = document.createElement('a');
