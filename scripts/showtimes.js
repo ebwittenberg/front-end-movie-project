@@ -52,7 +52,7 @@ function storeShowTimeData(showtimeDatas) {
 
 // fetches OMDB data for each movie
 function fetchOmdbData(movieTitle) {
-    const omdbUrl = `http://www.omdbapi.com/?apikey=48ba5f31&t=${movieTitle}`
+    const omdbUrl = `https://www.omdbapi.com/?apikey=48ba5f31&t=${movieTitle}`
     let title = movieTitle;
     fetch(omdbUrl)
     .then (function(response) {
