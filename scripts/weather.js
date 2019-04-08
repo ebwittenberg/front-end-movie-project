@@ -8,7 +8,7 @@ function getWeatherData(zipcode) {
     // first global variable
     zip = zipcode;
 
-    const weatherForecastUrl = `http://api.openweathermap.org/data/2.5/forecast?zip=${zipcode},us&appid=${weatherApiKey}`;
+    const weatherForecastUrl = `https://api.openweathermap.org/data/2.5/forecast?zip=${zipcode},us&appid=${weatherApiKey}`;
     
     // fetch the data from the weather forecast URL, returns a promise
     fetch(weatherForecastUrl)
@@ -115,7 +115,7 @@ function firstRainyDay(rainyDaysArray) {
     let dt = new Date(justDate);
     let dayOfWeekIndex = dt.getDay()
     console.log(dayOfWeekIndex)
-    let dayOfWeek = daysOfTheWeekArray[dayOfWeekIndex + 1]
+    let dayOfWeek = daysOfTheWeekArray[dayOfWeekIndex]
     let rainyH2 = document.createElement('h2');
     rainyH2.textContent = dayOfWeek;
 
