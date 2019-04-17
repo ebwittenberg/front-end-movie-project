@@ -13,7 +13,7 @@
 
 
 #### Description
-MovieCloud is a simple web application that allows a user to input their zipcode and is returned a list of movies showing
+MovieCloud is a front-end web application that allows a user to input their zipcode and is returned a list of movies showing
 in theatres on the next rainy day (within five days).
 
 #### Features
