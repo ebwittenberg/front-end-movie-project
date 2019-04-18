@@ -13,8 +13,7 @@
 
 
 #### Description
-MovieCloud is a front-end web application that allows a user to input their zipcode and is returned a list of movies showing
-in theatres on the next rainy day (within five days).
+MovieCloud is a front-end web application that shows movies playing in theaters based on zip code and the next rainy day (within 5 days).
 
 #### Features
 * Zip Code search to fetch local weather from [Open Weather Map](https://openweathermap.org)
