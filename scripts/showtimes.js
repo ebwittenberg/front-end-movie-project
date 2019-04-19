@@ -7,7 +7,7 @@ function fetchShowtimeData(date) {
     let key2 = '36zekhh8ta2kuj2cujbj55rd';
     let key3 = '4g7bvs4v2vy929mbgrqynbkv';
 
-    let showtimeURL = `http://data.tmsapi.com/v1.1/movies/showings?startDate=${dateOnly}&zip=${zip}&api_key=${key3}`;
+    let showtimeURL = `https://data.tmsapi.com/v1.1/movies/showings?startDate=${dateOnly}&zip=${zip}&api_key=${key1}`;
     // showtime URL is going to give us all the movies that are playing in the zip code radius
     // returns a promise
 
@@ -52,7 +52,7 @@ function storeShowTimeData(showtimeDatas) {
 
 // fetches OMDB data for each movie
 function fetchOmdbData(movieTitle) {
-    const omdbUrl = `http://www.omdbapi.com/?apikey=48ba5f31&t=${movieTitle}`
+    const omdbUrl = `https://www.omdbapi.com/?apikey=48ba5f31&t=${movieTitle}`
     let title = movieTitle;
     fetch(omdbUrl)
     .then (function(response) {
