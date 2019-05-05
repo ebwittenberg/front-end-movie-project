@@ -115,9 +115,16 @@ function firstRainyDay(rainyDaysArray) {
     let dt = new Date(justDate);
     let dayOfWeekIndex = dt.getDay()
     console.log(dayOfWeekIndex)
-    let dayOfWeek = daysOfTheWeekArray[dayOfWeekIndex + 1]
+    let dayOfWeek;
+    if (dayOfWeekIndex === 6) {
+        dayOfWeek = daysOfTheWeekArray[0]
+    } else {
+        dayOfWeek = daysOfTheWeekArray[dayOfWeekIndex + 1]
+    }
+    console.log(dayOfWeek);
     let rainyH2 = document.createElement('h2');
     rainyH2.textContent = dayOfWeek;
+    console.log(rainyH2.textContent);
 
     let moviePresentationH2 = document.createElement('h2');
     moviePresentationH2.textContent = 'See below for a list of movies playing in your area';
