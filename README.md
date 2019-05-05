@@ -20,7 +20,7 @@ MovieCloud is a front-end web application that shows movies playing in theaters 
 * Returns the zip codes weather over the next five days
 * The first day of rain is captured and used to fetch a movie showtime api from
 [GraceNote Developer](http://developer.tmsapi.com/) using the supplied zip code and returned rain date
-* Movie poster artwork and IMDB ratings are fetched from [http://www.omdbapi.com/](OMDB Movie API) using the returned 
+* Movie poster artwork and IMDB ratings are fetched from [OMDB Movie API](http://www.omdbapi.com) using the returned 
 data from GraceNote Developer
 * Each poster art is displayed and to represent each movie showing in the area. Once a poster is clicked a pop up will
 display showing title, plot, MMCA Rating, IMDB Score and theaters and showtimes miniature poster
